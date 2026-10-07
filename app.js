@@ -79,6 +79,7 @@
     var p = primary();
     var others = tagsOf(r, p.id).filter(function (v) { return v !== fromId; });
     var meta = filters().map(function (s) {
+      if (s.multipleLabel && r.multipleLocations) return s.multipleLabel;
       return tagsOf(r, s.id).map(function (v) { return valueLabel(s, v); }).join(", ");
     }).filter(Boolean).join(" · ");
     return (
@@ -201,6 +202,10 @@
 
     var facetRows = filters().map(function (s) {
       var vals = tagsOf(r, s.id).map(function (v) { return valueLabel(s, v); }).join(", ");
+      if (s.multipleLabel && r.multipleLocations) {
+        return "<dt>" + esc(s.label) + "</dt><dd>" + esc(s.multipleLabel) +
+          (vals ? ", including " + esc(vals) : "") + "</dd>";
+      }
       return vals ? "<dt>" + esc(s.label) + "</dt><dd>" + esc(vals) + "</dd>" : "";
     }).join("");
 
@@ -225,7 +230,8 @@
           '<aside class="info">' +
             "<h2>Details</h2><dl>" + facetRows + "</dl>" +
             "<h2>Hours</h2>" + lines(3) +
-            "<h2>Location</h2>" + '<div class="ph ph-map">Map</div>' + lines(1) +
+            "<h2>" + (r.multipleLocations ? "Locations" : "Location") + "</h2>" + '<div class="ph ph-map">Map</div>' +
+              (r.multipleLocations ? '<p class="meta">[Location list / "Find nearest" selector]</p>' + lines(2) : lines(1)) +
             '<div class="buttons"><button type="button">Directions</button> <button type="button">Website</button></div>' +
           "</aside>" +
         "</div>" +

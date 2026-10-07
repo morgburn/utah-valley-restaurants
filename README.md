@@ -14,6 +14,8 @@ Home (7 category tiles)
 - **Facets (filters):** Price per person ($ = under $12, $$ = $12–$18, $$$ = over $18), Service style (Sit-down / Counter service / Fast food), City (Provo, Orem, Springville, Lindon, Pleasant Grove, Lehi, Sundance, Salt Lake area)
 - **Multi-category restaurants:** Cubby's (Burgers & Grill + Breakfast & Cafe) and BYU Creamery (Dessert + Burgers & Grill). Both overlaps come from the card sort.
 
+- **Chains / multi-location restaurants:** flagged with `multipleLocations: true`. Cards say "Multiple locations," and the restaurant page lists the cities. Each is tagged with every city it's in, so the City filter still finds it.
+
 ## Editing the data
 
 All content lives in **`data.js`**. No other file needs to change.
