@@ -68,3 +68,7 @@ button { font: inherit; border: 1px solid #222; background: #f2f2f2; padding: 6p
 @media (max-width: 700px) {
   .layout, .layout.detail { grid-template-columns: 1fr; }
 }
+
+/* Button to start the tree test (base wireframe only) */
+.site-header { position: relative; }
+.treetest-btn { position: absolute; top: 12px; right: 16px; border: 1px solid #222; padding: 4px 10px; background: #f2f2f2; text-decoration: none; font-size: .85rem; }

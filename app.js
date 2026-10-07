@@ -4,10 +4,12 @@
  */
 (function () {
   var S = window.SITE;
+  var OPTS = { params: null, test: false, onFilter: null };
 
   // ---------- helpers ----------
   function param(name) {
-    return new URLSearchParams(window.location.search).get(name);
+    var p = OPTS.params || new URLSearchParams(window.location.search);
+    return p.get(name);
   }
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -51,6 +53,7 @@
     return (
       '<header class="site-header">' +
         '<a class="logo" href="index.html">[Logo] ' + esc(S.title) + "</a>" +
+        (OPTS.test ? "" : '<a class="treetest-btn" href="treetest.html">Start tree test</a>') +
         '<nav aria-label="' + esc(p.label) + '"><ul class="global-nav">' +
           '<li><a href="index.html"' + (activeId === "home" ? ' class="active"' : "") + ">Home</a></li>" +
           links +
@@ -173,11 +176,20 @@
         ? shown.map(function (r) { return card(r, d.cat); }).join("")
         : '<li class="empty">No restaurants match these filters.</li>';
     }
-    boxes.forEach(function (b) { b.addEventListener("change", apply); });
+    boxes.forEach(function (b) {
+      b.addEventListener("change", function () {
+        apply();
+        if (OPTS.onFilter) {
+          var scheme = S.schemes.filter(function (s) { return s.id === b.dataset.scheme; })[0];
+          OPTS.onFilter({ scheme: scheme.label, value: valueLabel(scheme, b.value), checked: b.checked });
+        }
+      });
+    });
     var clear = document.getElementById("clear");
     if (clear) clear.addEventListener("click", function () {
       boxes.forEach(function (b) { b.checked = false; });
       apply();
+      if (OPTS.onFilter) OPTS.onFilter({ clear: true });
     });
     apply();
   }
@@ -249,9 +261,13 @@
 
   // ---------- boot ----------
   window.App = {
-    render: function (page) {
+    helpers: { primary: primary, valueLabel: valueLabel },
+    // opts (used by the tree test): { params: URLSearchParams, test: true, onFilter: fn }
+    render: function (page, opts) {
+      OPTS = opts || { params: null, test: false, onFilter: null };
       var html = { home: home, category: category, restaurant: restaurant }[page]();
       document.getElementById("app").innerHTML = html;
+      if (OPTS.test) document.title = "Tree test";
       if (page === "category") wireCategory();
     }
   };

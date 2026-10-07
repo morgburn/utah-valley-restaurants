@@ -1,0 +1,13 @@
+/* Tree test harness: plain black and white, same font as the wireframe. */
+.tt-screen { max-width: 700px; margin: 0 auto; padding: 24px 16px; }
+.tt-box { border: 1px solid #999; padding: 12px 16px; margin: 16px 0; }
+.tt-box h2 { margin-top: 0; }
+.tt-task { font-size: 1.25rem; border: 2px solid #222; }
+.tt-count { font-size: .85rem; color: #555; }
+.tt-primary { font-weight: bold; }
+.tt-screen input { font: inherit; padding: 4px 6px; margin-left: 6px; border: 1px solid #222; }
+.tt-banner {
+  position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 2px solid #222;
+  display: flex; gap: 16px; align-items: center; justify-content: space-between; padding: 10px 16px;
+}
+.tt-banner button { flex-shrink: 0; }

@@ -32,3 +32,31 @@ All content lives in **`data.js`**. No other file needs to change.
 ## Hosting
 
 The site is static, so GitHub Pages can serve it directly. Go to **Settings → Pages → Deploy from branch → `main` / root**.
+
+## Tree test
+
+Open **`treetest.html`**, or click **Start tree test** in the wireframe's header.
+
+1. The facilitator enters a participant name or ID, and the participant reads the instructions.
+2. The 10 tasks from `tasks.js` appear one at a time, **in a new random order for every participant**.
+3. Each task starts on Home. The participant browses the real wireframe, using the category pages and filters.
+4. A task ends when they **click any restaurant card**, or press **"I would give up."**
+5. When the run is finished, a CSV downloads automatically: `treetest_<participant>_<date>.csv`. There is one file per participant, so combine them for analysis by pasting them into one sheet. If a run is interrupted, reopening `treetest.html` in the same tab lets you resume it or download the partial results.
+
+### CSV columns (one row per task)
+
+| Column | Meaning |
+|---|---|
+| participant, session_start | Who took the test, and when |
+| task_position | Where the task appeared in this participant's random order (1–10) |
+| task_id, task_text | Which task it was, and the exact text shown |
+| target, predicted_first_click | Copied from `tasks.js`, for the report |
+| first_click | The first thing they clicked (a category or a filter) |
+| click_path | The full path, e.g. `Home > Asian > [Filter Price per person: $$ ($12–$18) on] > [Back] Home > Mexican > Costa Vida` |
+| final_block, final_category | The restaurant they chose, and the category page they chose it from |
+| outcome | `selected` or `gave_up`. A give-up leaves final_block blank, so it's never confused with a wrong pick |
+| page_clicks, filter_changes | Number of page navigations, and number of filter clicks |
+| back_button_uses, revisits | Directness signals: browser Back presses, and returns to a page already seen in this task |
+| seconds | Time from "Start task" to the final click |
+
+To change the tasks, edit `tasks.js`. The base wireframe pages are unchanged except for the Start tree test button.
