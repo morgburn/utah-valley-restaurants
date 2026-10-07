@@ -11,7 +11,7 @@ Home (7 category tiles)
 ```
 
 - **Primary categories:** Asian, Burgers & Grill, Mexican, Pizza, Dessert, Breakfast & Cafe, Hawaiian
-- **Facets (filters):** Price ($ / $$ / $$$), Service style (Sit-down / Counter service / Fast food)
+- **Facets (filters):** Price per person ($ = $10 or less, $$ = $10–$20, $$$ = over $20), Service style (Sit-down / Counter service / Fast food)
 - **Multi-category restaurants:** Cubby's (Burgers & Grill + Breakfast & Cafe) and BYU Creamery (Dessert + Burgers & Grill). Both overlaps come from the card sort.
 
 ## Editing the data

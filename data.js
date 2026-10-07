@@ -41,12 +41,12 @@ window.SITE = {
     },
     {
       id: "price",
-      label: "Price",
+      label: "Price per person",
       role: "filter",
       values: [
-        { id: "1", label: "$" },
-        { id: "2", label: "$$" },
-        { id: "3", label: "$$$" }
+        { id: "1", label: "$ ($10 or less)" },
+        { id: "2", label: "$$ ($10–$20)" },
+        { id: "3", label: "$$$ (over $20)" }
       ]
     },
     {
