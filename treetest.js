@@ -30,12 +30,16 @@
   function load() { try { return JSON.parse(sessionStorage.getItem(KEY)); } catch (e) { return null; } }
   function clearSaved() { try { sessionStorage.removeItem(KEY); } catch (e) {} }
   function primary() { return App.helpers.primary(); }
-  function catLabel(id) { return App.helpers.valueLabel(primary(), id); }
+  // "Food type: Asian" / "Dining experience: Sit-down"
+  function catLabel(by, id) {
+    var sch = App.helpers.scheme(by || primary().id);
+    return sch.label + ": " + App.helpers.valueLabel(sch, id);
+  }
   function restaurantName(id) {
     var r = S.restaurants.filter(function (x) { return x.id === id; })[0];
     return r ? r.name : id;
   }
-  function viewLabel(v) { return v.page === "home" ? "Home" : catLabel(v.params.id); }
+  function viewLabel(v) { return v.page === "home" ? "Home" : catLabel(v.params.by, v.params.id); }
 
   // ---------- screens ----------
   function screen(html) {
@@ -169,7 +173,7 @@
       first_click: cur.path[0] || (restaurantId ? restaurantName(restaurantId) : "(none)"),
       click_path: ["Home"].concat(cur.path).concat(restaurantId ? [restaurantName(restaurantId)] : ["(gave up)"]).join(" > "),
       final_block: restaurantId ? restaurantName(restaurantId) : "",
-      final_category: restaurantId ? (cur.lastCategory ? catLabel(cur.lastCategory) : "") : "",
+      final_category: restaurantId && cur.lastCategory ? catLabel(cur.lastCategory.by, cur.lastCategory.id) : "",
       outcome: restaurantId ? "selected" : "gave_up",
       page_clicks: navClicks,
       filter_changes: cur.filterChanges,
@@ -192,12 +196,12 @@
     var href = a.getAttribute("href") || "";
     var q = new URLSearchParams(href.split("?")[1] || "");
     if (href.indexOf("restaurant.html") === 0) {
-      cur.lastCategory = q.get("from") || (history.state && history.state.v && history.state.v.params.id) || "";
+      cur.lastCategory = q.get("from") ? { by: q.get("by"), id: q.get("from") } : null;
       endTask(q.get("id"));
       return;
     }
     var v = href.indexOf("category.html") === 0
-      ? { page: "category", params: { id: q.get("id") } }
+      ? { page: "category", params: { by: q.get("by") || primary().id, id: q.get("id") } }
       : { page: "home", params: {} };
     history.pushState({ tt: true, k: cur.key, v: v }, "");
     visit(v, false);

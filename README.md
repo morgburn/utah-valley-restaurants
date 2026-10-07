@@ -2,18 +2,22 @@
 
 A clickable, low-fidelity wireframe for usability testing. It is built from the information architecture produced by our card sort (Audrey Burrell and Morgan Burnside).
 
-## Structure (category hub)
+## Structure: two views of the same restaurants
 
 ```
-Home (7 category tiles)
- └─ Category page  (category.html?id=…)  – filter by Price and Service style
-     └─ Restaurant page (restaurant.html?id=…&from=…)
+Home
+├─ Browse by food type ........ Asian, Burgers & Grill, Mexican, Pizza, Dessert, Breakfast & Cafe, Hawaiian
+│    └─ category page (filters: price, service style, city) → restaurant page
+└─ Browse by dining experience  Quick & cheap, Counter service, Sit-down, Fine dining
+     └─ category page (filters: food type, price, city) → restaurant page
 ```
 
-- **Primary categories:** Asian, Burgers & Grill, Mexican, Pizza, Dessert, Breakfast & Cafe, Hawaiian
+- **Food type** (first view) comes straight from the card sort's majority scheme. 6 of 9 participants sorted by food type.
+- **Dining experience** (second view) comes from the 4 participants who sorted by how or where they'd eat. Tia (S7) sorted by price, Hannah B (S8) by service style, Jocelyn (S6) made "Sit down/nice" and "Cafe," and Mason (S9) made "Expensive/Fine Dining" and "Classic Fast Food."
+  Assignment rule: $$$ = Fine dining; other sit-down = Sit-down; $ counter or fast food = Quick & cheap; $$ counter or fast food = Counter service. Brick Oven, Tsunami, Cubby's and Kitchen Eighty Eight are borderline, so each also appears in a second group.
+- All 45 restaurants are reachable through Dining experience. Every restaurant except Log Haven and The Tree Room is also reachable through Food type. Those two are upscale American restaurants with no food-type home, so they appear only under Fine dining.
 - **Facets (filters):** Price per person ($ = under $12, $$ = $12–$18, $$$ = over $18), Service style (Sit-down / Counter service / Fast food), City (Provo, Orem, Springville, Lindon, Pleasant Grove, Lehi, Sundance, Salt Lake area)
-- **Multi-category restaurants:** Cubby's (Burgers & Grill + Breakfast & Cafe) and BYU Creamery (Dessert + Burgers & Grill). Both overlaps come from the card sort.
-
+- **Multi-category restaurants:** Cubby's, BYU Creamery, Purple Turtle, Budda's and Taquería Don Chuy appear in two food types.
 - **Chains / multi-location restaurants:** flagged with `multipleLocations: true`. Cards say "Multiple locations," and the restaurant page lists the cities. Each is tagged with every city it's in, so the City filter still finds it.
 
 ## Editing the data
@@ -27,7 +31,7 @@ All content lives in **`data.js`**. No other file needs to change.
 | Put a restaurant in more categories | Add more ids to its `tags.category` list |
 | Add or rename a category | Edit the `values` of the `category` scheme |
 | Add a new facet (e.g. Occasion) | Add a scheme with `role: "filter"` and tag restaurants with it |
-| Reorganize the site around a different scheme | Move `role: "primary"` to that scheme |
+| Add another way to browse | Add a scheme with `role: "browse"` and tag restaurants with it |
 
 ## Hosting
 

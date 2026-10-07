@@ -1,6 +1,14 @@
 /*
  * Rendering logic. Every page reads from data.js, so you should not need to
- * edit this file to add or remove restaurants, categories, or filters.
+ * edit this file to add or remove restaurants, categories, views, or filters.
+ *
+ * URLs
+ *   index.html                                   home: one section per browse scheme
+ *   category.html?by=<scheme>&id=<value>         a category page in one view
+ *                                                (by defaults to the first browse scheme)
+ *   restaurant.html?id=<id>&by=<scheme>&from=<value>
+ *                                                a restaurant; by/from remember how
+ *                                                the user got there, for the breadcrumb
  */
 (function () {
   var S = window.SITE;
@@ -16,48 +24,54 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
-  function primary() {
-    return S.schemes.filter(function (s) { return s.role === "primary"; })[0];
+  function scheme(id) { return S.schemes.filter(function (s) { return s.id === id; })[0]; }
+  function browseSchemes() { return S.schemes.filter(function (s) { return s.role === "browse"; }); }
+  function primary() { return browseSchemes()[0]; }
+  function filterSchemes() { return S.schemes.filter(function (s) { return s.role === "filter"; }); }
+  // filters shown on a browse scheme's category pages
+  function filtersFor(b) {
+    var ids = b.filters || filterSchemes().map(function (s) { return s.id; });
+    return ids.map(scheme).filter(Boolean);
   }
-  function filters() {
-    return S.schemes.filter(function (s) { return s.role === "filter"; });
-  }
-  function valueLabel(scheme, valueId) {
-    var v = scheme.values.filter(function (x) { return x.id === valueId; })[0];
+  // facts shown on cards: the plain filter schemes (price, service, city)
+  function cardFacts() { return filterSchemes(); }
+  function valueLabel(sch, valueId) {
+    var v = sch.values.filter(function (x) { return x.id === valueId; })[0];
     return v ? v.label : valueId;
   }
-  function tagsOf(r, schemeId) {
-    return (r.tags && r.tags[schemeId]) || [];
-  }
+  function tagsOf(r, schemeId) { return (r.tags && r.tags[schemeId]) || []; }
   function inValue(schemeId, valueId) {
-    return S.restaurants.filter(function (r) {
-      return tagsOf(r, schemeId).indexOf(valueId) !== -1;
-    });
+    return S.restaurants.filter(function (r) { return tagsOf(r, schemeId).indexOf(valueId) !== -1; });
   }
   function byName(a, b) { return a.name.localeCompare(b.name); }
-  function restaurantLink(r, fromId) {
+  function restaurantLink(r, by, fromId) {
     return "restaurant.html?id=" + encodeURIComponent(r.id) +
-      (fromId ? "&from=" + encodeURIComponent(fromId) : "");
+      (fromId ? "&by=" + encodeURIComponent(by) + "&from=" + encodeURIComponent(fromId) : "");
   }
-  function categoryLink(valueId) {
-    return "category.html?id=" + encodeURIComponent(valueId);
+  function categoryLink(by, valueId) {
+    return "category.html?by=" + encodeURIComponent(by) + "&id=" + encodeURIComponent(valueId);
   }
 
   // ---------- shared chrome ----------
-  function header(activeId) {
-    var p = primary();
-    var links = p.values.map(function (v) {
-      var cls = v.id === activeId ? ' class="active" aria-current="page"' : "";
-      return '<li><a href="' + categoryLink(v.id) + '"' + cls + ">" + esc(v.label) + "</a></li>";
+  // active: { home: true } or { by: schemeId, id: valueId }
+  function header(active) {
+    active = active || {};
+    var rows = browseSchemes().map(function (b) {
+      var links = b.values.map(function (v) {
+        var on = active.by === b.id && active.id === v.id;
+        return '<li><a href="' + categoryLink(b.id, v.id) + '"' + (on ? ' class="active" aria-current="page"' : "") +
+          ">" + esc(v.label) + "</a></li>";
+      }).join("");
+      return '<nav aria-label="' + esc(b.label) + '" class="nav-row"><span class="nav-label">' + esc(b.label) +
+        ':</span><ul class="global-nav">' + links + "</ul></nav>";
     }).join("");
     return (
       '<header class="site-header">' +
         '<a class="logo" href="index.html">[Logo] ' + esc(S.title) + "</a>" +
         (OPTS.test ? "" : '<a class="treetest-btn" href="treetest.html">Start tree test</a>') +
-        '<nav aria-label="' + esc(p.label) + '"><ul class="global-nav">' +
-          '<li><a href="index.html"' + (activeId === "home" ? ' class="active"' : "") + ">Home</a></li>" +
-          links +
-        "</ul></nav>" +
+        '<p class="home-link"><a href="index.html"' + (active.home ? ' class="active" aria-current="page"' : "") +
+          ">Home</a></p>" +
+        rows +
       "</header>"
     );
   }
@@ -78,21 +92,21 @@
     return out;
   }
 
-  function card(r, fromId) {
-    var p = primary();
-    var others = tagsOf(r, p.id).filter(function (v) { return v !== fromId; });
-    var meta = filters().map(function (s) {
+  function card(r, by, fromId) {
+    var b = scheme(by);
+    var others = tagsOf(r, by).filter(function (v) { return v !== fromId; });
+    var meta = cardFacts().map(function (s) {
       if (s.multipleLabel && r.multipleLocations) return s.multipleLabel;
       return tagsOf(r, s.id).map(function (v) { return valueLabel(s, v); }).join(", ");
     }).filter(Boolean).join(" · ");
     return (
-      '<li><a class="card" href="' + restaurantLink(r, fromId) + '">' +
+      '<li><a class="card" href="' + restaurantLink(r, by, fromId) + '">' +
         '<div class="ph ph-img">Image</div>' +
         '<div class="card-body">' +
           "<strong>" + esc(r.name) + "</strong>" +
           (meta ? '<div class="meta">' + esc(meta) + "</div>" : "") +
           (fromId && others.length
-            ? '<div class="also">Also in: ' + others.map(function (v) { return esc(valueLabel(p, v)); }).join(", ") + "</div>"
+            ? '<div class="also">Also in: ' + others.map(function (v) { return esc(valueLabel(b, v)); }).join(", ") + "</div>"
             : "") +
         "</div>" +
       "</a></li>"
@@ -101,33 +115,34 @@
 
   // ---------- pages ----------
   function home() {
-    var p = primary();
-    var tiles = p.values.map(function (v) {
-      var n = inValue(p.id, v.id).length;
-      return '<li><a class="tile" href="' + categoryLink(v.id) + '">' +
-        '<div class="ph ph-img">Image</div>' +
-        "<strong>" + esc(v.label) + "</strong>" +
-        '<span class="meta">' + n + " restaurant" + (n === 1 ? "" : "s") + "</span>" +
-      "</a></li>";
+    var sections = browseSchemes().map(function (b) {
+      var tiles = b.values.map(function (v) {
+        var n = inValue(b.id, v.id).length;
+        return '<li><a class="tile" href="' + categoryLink(b.id, v.id) + '">' +
+          '<div class="ph ph-img">Image</div>' +
+          "<strong>" + esc(v.label) + "</strong>" +
+          '<span class="meta">' + n + " restaurant" + (n === 1 ? "" : "s") + "</span>" +
+        "</a></li>";
+      }).join("");
+      return "<section><h2>Browse by " + esc(b.label.toLowerCase()) + '</h2><ul class="grid">' + tiles + "</ul></section>";
     }).join("");
-    return header("home") +
+    return header({ home: true }) +
       "<main>" +
         '<section class="hero"><h1>' + esc(S.title) + "</h1>" + lines(2) + "</section>" +
-        "<h2>Browse by " + esc(p.label.toLowerCase()) + "</h2>" +
-        '<ul class="grid">' + tiles + "</ul>" +
+        sections +
       "</main>" + footer();
   }
 
   function category() {
-    var p = primary();
-    var id = param("id");
-    var v = p.values.filter(function (x) { return x.id === id; })[0];
+    var b = scheme(param("by") || primary().id);
+    if (!b || b.role !== "browse") return notFound();
+    var v = b.values.filter(function (x) { return x.id === param("id"); })[0];
     if (!v) return notFound();
     document.title = v.label + " | " + S.title;
 
-    var list = inValue(p.id, v.id).sort(byName);
+    var list = inValue(b.id, v.id).sort(byName);
 
-    var filterHtml = filters().map(function (s) {
+    var filterHtml = filtersFor(b).map(function (s) {
       var opts = s.values.map(function (val) {
         return '<label><input type="checkbox" data-scheme="' + esc(s.id) + '" value="' + esc(val.id) + '"> ' +
           esc(val.label) + "</label>";
@@ -135,9 +150,10 @@
       return "<fieldset><legend>" + esc(s.label) + "</legend>" + opts + "</fieldset>";
     }).join("");
 
-    return header(v.id) +
+    return header({ by: b.id, id: v.id }) +
       "<main>" +
-        breadcrumb([{ label: "Home", href: "index.html" }, { label: v.label }]) +
+        breadcrumb([{ label: "Home", href: "index.html" }, { label: b.label + ": " + v.label }]) +
+        '<p class="view-label">' + esc(b.label) + "</p>" +
         "<h1>" + esc(v.label) + "</h1>" + lines(1) +
         '<div class="layout">' +
           (filterHtml
@@ -148,7 +164,7 @@
         "</div>" +
       "</main>" + footer() +
       '<script type="application/json" id="cat-data">' +
-        JSON.stringify({ cat: v.id, ids: list.map(function (r) { return r.id; }) }) +
+        JSON.stringify({ by: b.id, cat: v.id, ids: list.map(function (r) { return r.id; }) }) +
       "</script>";
   }
 
@@ -173,15 +189,15 @@
       document.getElementById("count").textContent =
         "Showing " + shown.length + " of " + all.length + " restaurants";
       document.getElementById("list").innerHTML = shown.length
-        ? shown.map(function (r) { return card(r, d.cat); }).join("")
+        ? shown.map(function (r) { return card(r, d.by, d.cat); }).join("")
         : '<li class="empty">No restaurants match these filters.</li>';
     }
     boxes.forEach(function (b) {
       b.addEventListener("change", function () {
         apply();
         if (OPTS.onFilter) {
-          var scheme = S.schemes.filter(function (s) { return s.id === b.dataset.scheme; })[0];
-          OPTS.onFilter({ scheme: scheme.label, value: valueLabel(scheme, b.value), checked: b.checked });
+          var sch = scheme(b.dataset.scheme);
+          OPTS.onFilter({ scheme: sch.label, value: valueLabel(sch, b.value), checked: b.checked });
         }
       });
     });
@@ -195,24 +211,31 @@
   }
 
   function restaurant() {
-    var p = primary();
     var r = S.restaurants.filter(function (x) { return x.id === param("id"); })[0];
     if (!r) return notFound();
     document.title = r.name + " | " + S.title;
 
-    var cats = tagsOf(r, p.id);
+    // Which view did the user come from? Fall back to the first view the restaurant is in.
+    var b = scheme(param("by") || "");
     var from = param("from");
-    if (cats.indexOf(from) === -1) from = cats[0];
+    if (!b || tagsOf(r, b.id).indexOf(from) === -1) {
+      b = browseSchemes().filter(function (s) { return tagsOf(r, s.id).length; })[0];
+      from = b ? tagsOf(r, b.id)[0] : null;
+    }
 
     var crumbs = [{ label: "Home", href: "index.html" }];
-    if (from) crumbs.push({ label: valueLabel(p, from), href: categoryLink(from) });
+    if (from) crumbs.push({ label: b.label + ": " + valueLabel(b, from), href: categoryLink(b.id, from) });
     crumbs.push({ label: r.name });
 
-    var catLinks = cats.map(function (c) {
-      return '<a class="tag" href="' + categoryLink(c) + '">' + esc(valueLabel(p, c)) + "</a>";
-    }).join(" ");
+    var tagRows = browseSchemes().map(function (s) {
+      var vals = tagsOf(r, s.id);
+      if (!vals.length) return "";
+      return '<p class="tags">' + esc(s.label) + ": " + vals.map(function (c) {
+        return '<a class="tag" href="' + categoryLink(s.id, c) + '">' + esc(valueLabel(s, c)) + "</a>";
+      }).join(" ") + "</p>";
+    }).join("");
 
-    var facetRows = filters().map(function (s) {
+    var facetRows = filterSchemes().map(function (s) {
       var vals = tagsOf(r, s.id).map(function (v) { return valueLabel(s, v); }).join(", ");
       if (s.multipleLabel && r.multipleLocations) {
         return "<dt>" + esc(s.label) + "</dt><dd>" + esc(s.multipleLabel) +
@@ -222,15 +245,15 @@
     }).join("");
 
     var related = from
-      ? inValue(p.id, from).filter(function (x) { return x.id !== r.id; }).sort(byName).slice(0, 3)
+      ? inValue(b.id, from).filter(function (x) { return x.id !== r.id; }).sort(byName).slice(0, 3)
       : [];
 
-    return header(from) +
+    return header(from ? { by: b.id, id: from } : {}) +
       "<main>" +
         breadcrumb(crumbs) +
         '<div class="ph ph-hero">Hero image</div>' +
         "<h1>" + esc(r.name) + "</h1>" +
-        '<p class="tags">' + esc(p.label) + (cats.length > 1 ? " (" + cats.length + ")" : "") + ": " + catLinks + "</p>" +
+        tagRows +
         '<div class="layout detail">' +
           "<section>" +
             "<h2>About</h2>" + lines(4) +
@@ -248,20 +271,20 @@
           "</aside>" +
         "</div>" +
         (related.length
-          ? "<h2>More in " + esc(valueLabel(p, from)) + '</h2><ul class="list">' +
-            related.map(function (x) { return card(x, from); }).join("") + "</ul>"
+          ? "<h2>More in " + esc(valueLabel(b, from)) + '</h2><ul class="list">' +
+            related.map(function (x) { return card(x, b.id, from); }).join("") + "</ul>"
           : "") +
       "</main>" + footer();
   }
 
   function notFound() {
-    return header("") +
+    return header({}) +
       "<main><h1>Page not found</h1><p><a href=\"index.html\">Back to Home</a></p></main>" + footer();
   }
 
   // ---------- boot ----------
   window.App = {
-    helpers: { primary: primary, valueLabel: valueLabel },
+    helpers: { scheme: scheme, primary: primary, browseSchemes: browseSchemes, valueLabel: valueLabel },
     // opts (used by the tree test): { params: URLSearchParams, test: true, onFilter: fn }
     render: function (page, opts) {
       OPTS = opts || { params: null, test: false, onFilter: null };

@@ -72,3 +72,12 @@ button { font: inherit; border: 1px solid #222; background: #f2f2f2; padding: 6p
 /* Button to start the tree test (base wireframe only) */
 .site-header { position: relative; }
 .treetest-btn { position: absolute; top: 12px; right: 16px; border: 1px solid #222; padding: 4px 10px; background: #f2f2f2; text-decoration: none; font-size: .85rem; }
+
+/* Two browse views in the header */
+.home-link { margin: 10px 0 4px; }
+.nav-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-top: 4px; }
+.nav-label { font-weight: bold; font-size: .9rem; }
+.nav-row .global-nav { margin-top: 0; }
+.view-label { margin: 8px 0 0; font-size: .9rem; }
+.view-label + h1 { margin-top: 2px; }
+.home-link a.active { font-weight: bold; text-decoration: none; border-bottom: 2px solid #222; }
