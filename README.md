@@ -11,7 +11,7 @@ Home (7 category tiles)
 ```
 
 - **Primary categories:** Asian, Burgers & Grill, Mexican, Pizza, Dessert, Breakfast & Cafe, Hawaiian
-- **Facets (filters):** Price per person ($ = under $12, $$ = $12–$18, $$$ = over $18), Service style (Sit-down / Counter service / Fast food)
+- **Facets (filters):** Price per person ($ = under $12, $$ = $12–$18, $$$ = over $18), Service style (Sit-down / Counter service / Fast food), City (Provo, Orem, Springville, Lindon, Pleasant Grove, Lehi, Sundance, Salt Lake area)
 - **Multi-category restaurants:** Cubby's (Burgers & Grill + Breakfast & Cafe) and BYU Creamery (Dessert + Burgers & Grill). Both overlaps come from the card sort.
 
 ## Editing the data
