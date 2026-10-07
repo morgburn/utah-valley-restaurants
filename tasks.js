@@ -1,6 +1,7 @@
 /*
  * TREE TEST TASKS: edit this file to change the tasks.
- * Source: "Treetest Tests" Google Sheet (spelling fixed, wording unchanged).
+ * Source: "Treetest Tests" Google Sheet (spelling fixed). Tasks 1, 2 and 7 were
+ * reworded so they don't quote the site's own labels.
  *
  *   id         stays fixed so results can be compared across participants
  *   text       exactly what the participant sees
@@ -10,9 +11,9 @@
  * Task order is shuffled independently for every participant.
  */
 window.TREETEST_TASKS = [
-  { id: 1,  text: "You are looking for an Asian sit-down restaurant to eat with your family that is between $12 and $18.",
+  { id: 1,  text: "Your family wants to be served at a table for a meal of pho or sushi, and you'd like to spend about $15 each.",
     predicted: "Asian", target: "Asian > Pho Plus" },
-  { id: 2,  text: "Find a Burgers & Grill restaurant that is under $12.",
+  { id: 2,  text: "You want a cheap cheeseburger and fries, and you don't want to spend more than about $10.",
     predicted: "Burgers & Grill", target: "" },
   { id: 3,  text: "You are looking for a quick restaurant to stop at while traveling.",
     predicted: "", target: "" },
@@ -22,7 +23,7 @@ window.TREETEST_TASKS = [
     predicted: "", target: "Burgers & Grill > Roni's Mac Bar" },
   { id: 6,  text: "You are looking for a fancy restaurant in SLC to eat at for a celebration.",
     predicted: "", target: "" },
-  { id: 7,  text: "You are planning a first date and thinking about getting ice cream.",
+  { id: 7,  text: "You're planning a first date and want to end it with a cone or a milkshake.",
     predicted: "Desserts", target: "" },
   { id: 8,  text: "You are looking for a restaurant to eat at as an FHE activity.",
     predicted: "", target: "" },
