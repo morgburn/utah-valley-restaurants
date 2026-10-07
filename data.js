@@ -46,9 +46,9 @@ window.SITE = {
       // Tiers estimate the price of a typical main dish for one person (Oct 2026),
       // based on menu prices mentioned in recent Google reviews where available.
       values: [
-        { id: "1", label: "$ ($10 or less)" },
-        { id: "2", label: "$$ ($10–$20)" },
-        { id: "3", label: "$$$ (over $20)" }
+        { id: "1", label: "$ (under $12)" },
+        { id: "2", label: "$$ ($12–$18)" },
+        { id: "3", label: "$$$ (over $18)" }
       ]
     },
     {
@@ -70,19 +70,19 @@ window.SITE = {
     { id: "thai-time", name: "Thai Time of Provo",
       tags: { category: ["asian"], price: ["2"], service: ["counter"] } },
     { id: "cupbop", name: "Cupbop",
-      tags: { category: ["asian"], price: ["2"], service: ["counter"] } },
+      tags: { category: ["asian"], price: ["1"], service: ["counter"] } },
     { id: "panda-express", name: "Panda Express",
-      tags: { category: ["asian"], price: ["2"], service: ["fast"] } },
+      tags: { category: ["asian"], price: ["1"], service: ["fast"] } },
 
     // ---------- Burgers & Grill ----------
     { id: "chom-burger", name: "CHOM Burger",
-      tags: { category: ["burgers-grill"], price: ["2"], service: ["counter"] } },
+      tags: { category: ["burgers-grill"], price: ["1"], service: ["counter"] } },
     { id: "seven-brothers", name: "Seven Brothers Burgers",
       tags: { category: ["burgers-grill"], price: ["2"], service: ["counter"] } },
     { id: "j-dawgs", name: "J. Dawgs",
       tags: { category: ["burgers-grill"], price: ["1"], service: ["counter"] } },
     { id: "chick-fil-a", name: "Chick-fil-A",
-      tags: { category: ["burgers-grill"], price: ["2"], service: ["fast"] } },
+      tags: { category: ["burgers-grill"], price: ["1"], service: ["fast"] } },
     { id: "rodizio", name: "Rodizio Grill",
       tags: { category: ["burgers-grill"], price: ["3"], service: ["sit-down"] } },
     { id: "ronis-mac-bar", name: "Roni's Mac Bar",
@@ -95,7 +95,7 @@ window.SITE = {
     { id: "cafe-rio", name: "Cafe Rio",
       tags: { category: ["mexican"], price: ["2"], service: ["fast"] } },
     { id: "costa-vida", name: "Costa Vida",
-      tags: { category: ["mexican"], price: ["2"], service: ["fast"] } },
+      tags: { category: ["mexican"], price: ["1"], service: ["fast"] } },
     { id: "don-joaquin", name: "Don Joaquin Street Tacos",
       tags: { category: ["mexican"], price: ["1"], service: ["counter"] } },
     { id: "the-taco-spot", name: "The Taco Spot",
@@ -103,7 +103,7 @@ window.SITE = {
 
     // ---------- Pizza ----------
     { id: "brick-oven", name: "Brick Oven",
-      tags: { category: ["pizza"], price: ["2"], service: ["sit-down"] } },
+      tags: { category: ["pizza"], price: ["3"], service: ["sit-down"] } },
     { id: "fat-daddys", name: "Fat Daddy's Pizzeria",
       tags: { category: ["pizza"], price: ["2"], service: ["sit-down"] } },
 
