@@ -84,8 +84,10 @@
     active = active || {};
     var q = active.query || "";
     var navs = browseSchemes().map(function (b) {
-      return '<div class="nav-group"><span class="nav-label" id="nav-' + b.id + '">' + esc(b.label) + "</span>" +
-        '<ul aria-labelledby="nav-' + b.id + '">' +
+      // No visible label: the groups are told apart by proximity (tight
+      // spacing inside a group, a wide gap between groups). The label stays
+      // for screen readers.
+      return '<div class="nav-group"><ul aria-label="' + esc(b.label) + '">' +
         b.values.map(function (v) {
           var on = active.by === b.id && active.id === v.id;
           return '<li><a href="' + categoryLink(b.id, v.id) + '"' + (on ? ' class="on" aria-current="page"' : "") + ">" + esc(v.label) + "</a></li>";
@@ -105,7 +107,7 @@
           "</form>" +
         "</div>" +
         '<nav class="views" aria-label="Browse">' +
-          '<a class="home-link' + (active.home ? " on" : "") + '" href="index.html">Home</a>' +
+          '<div class="nav-group"><a class="home-link' + (active.home ? " on" : "") + '" href="index.html">Home</a></div>' +
           navs +
         "</nav>" +
       "</header>"
