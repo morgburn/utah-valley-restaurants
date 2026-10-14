@@ -107,7 +107,6 @@
           "</form>" +
         "</div>" +
         '<nav class="views" aria-label="Browse">' +
-          '<div class="nav-group"><a class="home-link' + (active.home ? " on" : "") + '" href="index.html">Home</a></div>' +
           navs +
         "</nav>" +
       "</header>"

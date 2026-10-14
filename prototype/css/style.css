@@ -83,7 +83,8 @@ button, input { font: inherit; }
   display: flex; flex-wrap: nowrap; align-items: center;
   /* proximity: wide gap BETWEEN groups (Home | Food type | Dining experience) */
   gap: clamp(20px, 3.4vw, 56px);
-  padding: 9px var(--gutter) 9px max(var(--gutter), calc((100% - 1240px) / 2 + var(--gutter) - 8px));
+  justify-content: space-between;   /* Food Type hugs the left edge, Dining Experience the right */
+  padding: 9px max(var(--gutter), calc((100% - 1240px) / 2 + var(--gutter) - 8px));
   white-space: nowrap; overflow-x: auto; scrollbar-width: thin;
 }
 .views a {
