@@ -36,11 +36,11 @@ Coverage: all 47 blocks are reachable in **both** views.
 | Role | Value | Used for |
 |---|---|---|
 | Base | `#2B4C8C` navy | nav band, links, price chip outline |
-| Tint | `#DCE5F5` ice | chips, current nav item, "We searched for" chips |
+| Tint | `#DCE5F5` ice | chips, current nav item, "We searched for" chips, ground of the Narrow-by rail and search facet panel |
 | Shade | `#142648` midnight | header band, headings, restaurant names |
 | Accent | `#E59A1A` amber (complement of navy) | **only** the Search button, checked Narrow-by filters, pressed facet buttons |
 
-Neutrals: page `#F4F6FA`, card `#FFFFFF`, ink `#1A2233`, muted `#5A6478`, rule `#D5DCE8`.
+Neutrals: page `#ECF0F6`, card `#FFFFFF`, ink `#1A2233`, muted `#5A6478`, rule `#D5DCE8`.
 
 Type: DM Serif Display for page titles and restaurant names, DM Sans for everything else.
 

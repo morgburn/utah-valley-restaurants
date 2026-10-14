@@ -17,7 +17,7 @@
   --shade: #142648;
   --accent: #E59A1A;
 
-  --page: #F4F6FA;
+  --page: #ECF0F6;   /* slightly darker, navy-tinted ground so white cards read as figures */
   --card: #FFFFFF;
   --ink: #1A2233;
   --muted: #5A6478;
@@ -142,7 +142,8 @@ main.wrap { padding-top: 22px; padding-bottom: 80px; min-height: 60vh; }
 .with-rail { display: grid; grid-template-columns: var(--rail) 1fr; gap: 32px; align-items: start; }
 .rail {
   position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto;
-  background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 18px 16px;
+  /* tint ground sets the narrowing controls apart from the white result cards */
+  background: var(--tint); border: 1px solid #C7D4EA; border-radius: var(--r-card); padding: 18px 16px;
 }
 .rail fieldset { border: 0; margin: 0 0 18px; padding: 0; }
 .rail legend { font-weight: 700; color: var(--shade); font-size: 15px; margin-bottom: 6px; padding: 0; }
@@ -150,12 +151,12 @@ main.wrap { padding-top: 22px; padding-bottom: 80px; min-height: 60vh; }
   display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 8px;
   padding: 5px 6px; border-radius: 6px; cursor: pointer; font-size: 15px;
 }
-.opt:hover { background: var(--page); }
+.opt:hover { background: rgba(255, 255, 255, .55); }
 .opt input { width: 17px; height: 17px; margin: 0; accent-color: var(--accent); cursor: pointer; }
 .opt-detail { color: var(--muted); font-size: 13px; }
 .opt-count {
   min-width: 26px; text-align: center; font-size: 13px; font-variant-numeric: tabular-nums;
-  color: var(--muted); background: var(--page); border-radius: var(--r-pill); padding: 1px 7px;
+  color: var(--muted); background: var(--card); border-radius: var(--r-pill); padding: 1px 7px;
 }
 .opt.is-off { color: var(--muted); cursor: default; }
 .opt.is-off input { cursor: default; }
@@ -176,7 +177,7 @@ main.wrap { padding-top: 22px; padding-bottom: 80px; min-height: 60vh; }
 .understood li.ignored { background: transparent; border: 1px dashed var(--rule); color: var(--muted); }
 .facets > .linklike { justify-self: start; }
 .facets {
-  background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card);
+  background: var(--tint); border: 1px solid #C7D4EA; border-radius: var(--r-card);
   padding: 14px 16px; margin-bottom: 24px; display: grid; gap: 10px;
 }
 .facet-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
