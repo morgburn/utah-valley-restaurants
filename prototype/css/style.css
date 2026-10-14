@@ -84,12 +84,12 @@ button, input { font: inherit; }
   /* proximity: wide gap BETWEEN groups (Home | Food type | Dining experience) */
   gap: clamp(20px, 3.4vw, 56px);
   justify-content: space-between;   /* Food Type hugs the left edge, Dining Experience the right */
-  padding: 9px max(var(--gutter), calc((100% - 1240px) / 2 + var(--gutter) - 8px));
+  padding: 18px max(var(--gutter), calc((100% - 1240px) / 2 + var(--gutter) - 8px));
   white-space: nowrap; overflow-x: auto; scrollbar-width: thin;
 }
 .views a {
   color: #fff; text-decoration: none; border-radius: var(--r-pill); font-weight: 500;
-  font-size: clamp(13.5px, 1.1vw, 15px); padding: 5px clamp(6px, .6vw, 9px);
+  font-size: clamp(13.5px, 1.1vw, 15px); padding: 7px clamp(6px, .6vw, 9px);
 }
 .views a:hover { background: rgba(255, 255, 255, .14); color: #fff; }
 .views a.on, .views a[aria-current="page"] { background: var(--tint); color: var(--shade); font-weight: 700; }
