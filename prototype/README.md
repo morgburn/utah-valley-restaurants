@@ -36,7 +36,8 @@ Coverage: all 47 blocks are reachable in **both** views.
 | Role | Value | Used for |
 |---|---|---|
 | Base | `#2B4C8C` navy | nav band, links, price chip outline |
-| Tint | `#DCE5F5` ice | chips, current nav item, "We searched for" chips, ground of the Narrow-by rail and search facet panel |
+| Tint | `#DCE5F5` ice | chips, current nav item, "We searched for" chips |
+| Light tint | `#E6EDF8` | ground of the Narrow-by rail and search facet panel (a lighter step of the same tint) |
 | Shade | `#142648` midnight | header band, headings, restaurant names |
 | Accent | `#E59A1A` amber (complement of navy) | **only** the Search button, checked Narrow-by filters, pressed facet buttons |
 
