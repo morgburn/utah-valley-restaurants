@@ -49,7 +49,7 @@
   function block(r, ctx) {
     ctx = ctx || {};
     var ph = photoOf(r);
-    var place = r.multipleLocations ? "Multiple locations"
+    var place = r.multipleLocations ? "Multiple Locations"
       : tagsOf(r, "city").map(function (c) { return label("city", c); }).join(", ");
     var chips =
       '<li class="chip chip-price" title="' + esc(priceText(tagsOf(r, "price")[0])) + '">' + esc(label("price", tagsOf(r, "price")[0])) + "</li>" +
@@ -123,7 +123,7 @@
     return '<footer class="site-footer"><div class="wrap">' +
       "<p>Restaurants of Utah Valley, prototype v1 by Audrey Burrell and Morgan Burnside.</p>" +
       '<p>Food photos are stand-ins from <a href="https://unsplash.com">Unsplash</a>. ' +
-      '<a href="log.html">Test log</a></p>' +
+      '<a href="log.html">Test Log</a></p>' +
       "</div></footer>";
   }
   function page(active, body) {
@@ -309,8 +309,8 @@
           '<p class="lede">' + esc(r.summary) + "</p>" +
           '<dl class="facts">' +
             homes +
-            "<div><dt>Price per person</dt><dd>" + esc(priceText(tagsOf(r, "price")[0])) + "</dd></div>" +
-            "<div><dt>Service style</dt><dd>" + esc(tagsOf(r, "service").map(function (v) { return label("service", v); }).join(", ")) + "</dd></div>" +
+            "<div><dt>Price per Person</dt><dd>" + esc(priceText(tagsOf(r, "price")[0])) + "</dd></div>" +
+            "<div><dt>Service Style</dt><dd>" + esc(tagsOf(r, "service").map(function (v) { return label("service", v); }).join(", ")) + "</dd></div>" +
             "<div><dt>" + (r.multipleLocations ? "Locations" : "Location") + "</dt><dd>" + esc(cities) + "</dd></div>" +
           "</dl>" +
           '<p class="stub-note">Menu, hours and directions come in the final prototype.</p>' +
@@ -462,10 +462,10 @@
 
   // ---------- Log page ----------
   function logPage() {
-    document.title = "Test log | " + S.title;
+    document.title = "Test Log | " + S.title;
     return page({},
-      crumbs([{ label: "Home", href: "index.html" }, { label: "Test log" }]) +
-      '<div class="page-head"><h1>Test log</h1><p class="lede">Every click and search on this browser is recorded here for the task test. ' +
+      crumbs([{ label: "Home", href: "index.html" }, { label: "Test Log" }]) +
+      '<div class="page-head"><h1>Test Log</h1><p class="lede">Every click and search on this browser is recorded here for the task test. ' +
       "Results clicks carry the id of the search that produced them.</p></div>" +
       '<div class="log-tools">' +
         '<form id="session-form" class="log-session"><label for="participant">Participant</label>' +

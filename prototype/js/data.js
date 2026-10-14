@@ -32,7 +32,7 @@ window.SITE = {
 
   schemes: [
     {
-      id: "category", label: "Food type", role: "browse",
+      id: "category", label: "Food Type", role: "browse",
       narrowLabel: "Narrow by Food Type",
       filters: ["service", "price", "city"],            // [D3] service style moved to 1st
       values: [
@@ -47,18 +47,18 @@ window.SITE = {
       ]
     },
     {
-      id: "dining", label: "Dining experience", role: "browse",
+      id: "dining", label: "Dining Experience", role: "browse",
       narrowLabel: "Narrow by Dining Experience",
       filters: ["category", "price", "city"],            // [D3] food type first
       values: [
-        { id: "quick",    label: "Quick & cheap" },
-        { id: "counter",  label: "Counter service" },
-        { id: "sit-down", label: "Sit-down" },
-        { id: "fine",     label: "Fine dining" }
+        { id: "quick",    label: "Quick & Cheap" },
+        { id: "counter",  label: "Counter Service" },
+        { id: "sit-down", label: "Sit-Down" },
+        { id: "fine",     label: "Fine Dining" }
       ]
     },
     {
-      id: "price", label: "Price per person", role: "filter",
+      id: "price", label: "Price per Person", role: "filter",
       narrowLabel: "Narrow by Price",                    // [D4] renamed
       values: [
         { id: "1", label: "$", detail: "under $12" },
@@ -67,18 +67,18 @@ window.SITE = {
       ]
     },
     {
-      id: "service", label: "Service style", role: "filter",
+      id: "service", label: "Service Style", role: "filter",
       narrowLabel: "Narrow by Service Style",            // [D4] renamed
       values: [
-        { id: "sit-down", label: "Sit-down" },
-        { id: "counter",  label: "Counter service" },
-        { id: "fast",     label: "Fast food" }
+        { id: "sit-down", label: "Sit-Down" },
+        { id: "counter",  label: "Counter Service" },
+        { id: "fast",     label: "Fast Food" }
       ]
     },
     {
       id: "city", label: "City", role: "filter",
       narrowLabel: "Narrow by City",                     // [D4] renamed
-      multipleLabel: "Multiple locations",
+      multipleLabel: "Multiple Locations",
       values: [
         { id: "provo",          label: "Provo" },
         { id: "orem",           label: "Orem" },
@@ -88,7 +88,7 @@ window.SITE = {
         { id: "american-fork",  label: "American Fork" }, // added for Olive Garden
         { id: "lehi",           label: "Lehi" },
         { id: "sundance",       label: "Sundance" },
-        { id: "salt-lake",      label: "Salt Lake area" }
+        { id: "salt-lake",      label: "Salt Lake Area" }
       ]
     }
   ],
@@ -257,11 +257,11 @@ window.SITE = {
   // so people learn the header views instead of browsing from Home.
   explore: [
     { restaurant: "chom-burger",   label: "Under $12",              by: "dining",   id: "quick",    narrow: { price: ["1"] } },
-    { restaurant: "pho-plus",      label: "Sit-down Asian",         by: "category", id: "asian",    narrow: { service: ["sit-down"] } },
-    { restaurant: "log-haven",     label: "Fine dining in Salt Lake", by: "dining", id: "fine",     narrow: { city: ["salt-lake"] } },
-    { restaurant: "byu-creamery",  label: "Cones and shakes",       by: "category", id: "dessert",  narrow: {} },
+    { restaurant: "pho-plus",      label: "Sit-Down Asian",         by: "category", id: "asian",    narrow: { service: ["sit-down"] } },
+    { restaurant: "log-haven",     label: "Fine Dining in Salt Lake", by: "dining", id: "fine",     narrow: { city: ["salt-lake"] } },
+    { restaurant: "byu-creamery",  label: "Cones and Shakes",       by: "category", id: "dessert",  narrow: {} },
     { restaurant: "ronis-mac-bar", label: "New: Pasta",             by: "category", id: "pasta",    narrow: {} },
-    { restaurant: "mo-bettahs",    label: "Counter service in Orem", by: "dining",  id: "counter",  narrow: { city: ["orem"] } }
+    { restaurant: "mo-bettahs",    label: "Counter Service in Orem", by: "dining",  id: "counter",  narrow: { city: ["orem"] } }
   ]
 };
 

@@ -20,13 +20,13 @@ Live: `https://morgburn.github.io/utah-valley-restaurants/prototype/`
 
 | Decision | Where it shows |
 |---|---|
-| D1 Pasta category; Roni's Mac Bar cross-listed, stays in Burgers & Grill | `data.js` Food type values; Roni's `category: ["burgers-grill", "pasta"]` |
+| D1 Pasta category; Roni's Mac Bar cross-listed, stays in Burgers & Grill | `data.js` Food Type values; Roni's `category: ["burgers-grill", "pasta"]` |
 | D1+ (deviation) Pasta also holds Brick Oven and Pizzeria Seven Twelve (both stay in Pizza) and two new blocks, Olive Garden and The Old Spaghetti Factory | Justification: a one-card category reads as broken, and Abbie's (S5) "Italian" pile and Katelyn's "Pasta" expectation describe a pasta/Italian group, not one restaurant. Adds "American Fork" to the City values for Olive Garden. |
-| D2 Dining experience on the same nav line as Food type | `app.js` `header()`; `.views` in CSS |
+| D2 Dining Experience on the same nav line as Food Type | `app.js` `header()`; `.views` in CSS |
 | D3 Filter order: other view first, then price, then city | `filters` arrays in `data.js` |
 | D4 Sticky rail, no "Filter" heading, "Narrow by …" labels, live counts | `narrowLabel` in `data.js`; `wireCategory()`; `.rail { position: sticky }` |
 | D5 Home "Explore" replaces the two tile grids | `explore` in `data.js`; each label links to a pre-narrowed category page |
-| D6 Costa Vida cross-listed under Counter service | Costa Vida `dining: ["quick", "counter"]` |
+| D6 Costa Vida cross-listed under Counter Service | Costa Vida `dining: ["quick", "counter"]` |
 | D7 Log Haven and The Tree Room get a food type (Burgers & Grill) | their `category` arrays |
 
 Coverage: all 47 blocks are reachable in **both** views.
