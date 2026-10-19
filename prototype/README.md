@@ -37,7 +37,7 @@ Live: `https://morgburn.github.io/utah-valley-restaurants/prototype/`
 | Cuisine pages narrow by Dining Experience (Quick & Cheap, Counter Service, Sit-Down, Fine Dining) instead of Service Style | `filters: ["dining", "price", "city"]` on `category` |
 | Home has two card sections: "What are we craving?" (one card per food type) and "How do we want to eat?" (one card per dining experience); Explore removed | `homeSections` in `data.js`; `home()` / `viewCard()` |
 | Search results use the same left "Narrow by" rail as category pages | `railHtml()` shared by `wireCategory()` and `wireSearch()` |
-| Stacked "Utah / Valley / Eats" wordmark on the same left edge as the nav and page content; search centered on the bar | `.bar` 3-column grid in CSS |
+| Two-line "Utah Valley / Eats" wordmark, left-aligned, on the same left edge as the nav and page content; search centered on the bar | `.bar` 3-column grid in CSS |
 
 Coverage: all 47 blocks are reachable in **both** views (Dining Experience pages are reached from the Home cards).
 

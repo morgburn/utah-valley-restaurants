@@ -100,7 +100,7 @@
       '<header class="site-header">' +
         '<div class="bar">' +
           '<a class="wordmark" href="index.html"' + (active.home ? ' aria-current="page"' : "") + ">" +
-            '<span>Utah</span><span>Valley</span><span class="wordmark-sub">Eats</span></a>' +
+            '<span>Utah Valley</span><span class="wordmark-sub">Eats</span></a>' +
           '<form class="search" action="search.html" method="get" role="search">' +
             '<label class="sr-only" for="q">Search restaurants</label>' +
             '<input id="q" name="q" type="search" autocomplete="off" value="' + esc(q) + '" ' +

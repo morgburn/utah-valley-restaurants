@@ -70,7 +70,7 @@ button, input { font: inherit; }
 }
 .wordmark {
   justify-self: start; display: flex; flex-direction: column;
-  color: #fff; text-decoration: none; white-space: nowrap; font: 400 20px/0.98 var(--serif);
+  color: #fff; text-decoration: none; white-space: nowrap; font: 400 24px/1 var(--serif);
 }
 .wordmark:hover { color: #fff; }
 .wordmark-sub { color: var(--tint); opacity: .8; }
@@ -253,7 +253,7 @@ main.wrap { padding-top: 22px; padding-bottom: 80px; min-height: 60vh; }
 @media (max-width: 860px) {
   .bar { grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding: 12px 16px; }
   .bar-balance { display: none; }
-  .wordmark { font-size: 17px; }
+  .wordmark { font-size: 19px; }
   .search button { padding: 10px 18px; }
   .wrap { padding: 0 16px; }
   .views { padding: 8px 16px; }
