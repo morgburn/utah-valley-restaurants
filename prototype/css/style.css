@@ -33,6 +33,7 @@
   --r-photo: 6px;
   --gutter: 24px;
   --rail: 264px;
+  --nav-pad: clamp(6px, .6vw, 9px);
 }
 
 * { box-sizing: border-box; }
@@ -63,7 +64,8 @@ button, input { font: inherit; }
   /* three columns: wordmark | search | empty twin of the wordmark column.
      The two outer columns are equal (1fr), so the search sits exactly
      in the center of the bar no matter how wide the wordmark is. */
-  padding: 16px var(--gutter);
+  /* same left edge as the nav text and page content; symmetric so the search stays centered */
+  padding: 16px max(var(--gutter), calc((100% - 1240px) / 2 + var(--gutter)));
   display: grid; grid-template-columns: 1fr minmax(0, 680px) 1fr; align-items: center; gap: 32px;
 }
 .wordmark {
@@ -88,13 +90,15 @@ button, input { font: inherit; }
 .views {
   background: var(--base);
   display: flex; flex-wrap: nowrap; align-items: center;
-  padding: 18px max(var(--gutter), calc((100% - 1240px) / 2 + var(--gutter) - 8px));
+  padding: 18px max(var(--gutter), calc((100% - 1240px) / 2 + var(--gutter)));
   white-space: nowrap; overflow-x: auto; scrollbar-width: thin;
 }
 .views a {
   color: #fff; text-decoration: none; border-radius: var(--r-pill); font-weight: 500;
-  font-size: clamp(13.5px, 1.1vw, 15px); padding: 7px clamp(6px, .6vw, 9px);
+  font-size: clamp(13.5px, 1.1vw, 15px); padding: 7px var(--nav-pad);
 }
+/* pull the first link left by its own padding so its TEXT lines up with the logo and page content */
+.views li:first-child a { margin-left: calc(-1 * var(--nav-pad)); }
 .views a:hover { background: rgba(255, 255, 255, .14); color: #fff; }
 .views a.on, .views a[aria-current="page"] { background: var(--tint); color: var(--shade); font-weight: 700; }
 /* proximity: items INSIDE a group sit close together */
