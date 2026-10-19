@@ -147,14 +147,20 @@
   }
   function home() {
     document.title = S.title;
-    return page({ home: true }, S.homeSections.map(function (sec, i) {
-      var b = scheme(sec.by);
-      var tag = i === 0 ? "h1" : "h2";
-      return '<section class="home-section" aria-labelledby="home-' + b.id + '">' +
-        "<" + tag + ' id="home-' + b.id + '">' + esc(sec.heading) + "</" + tag + ">" +
-        '<ul class="view-cards">' + b.values.map(function (v) { return viewCard(b, v); }).join("") + "</ul>" +
-      "</section>";
-    }).join(""));
+    return page({ home: true },
+      '<section class="intro">' +
+        "<h1>Where should we eat?</h1>" +
+        '<p class="lede">Browse ' + S.restaurants.length + " restaurants from Provo to Salt Lake by the food you want or by how you want to eat. " +
+          "Or search for anything: a dish, a price, a city, a night out.</p>" +
+      "</section>" +
+      S.homeSections.map(function (sec) {
+        var b = scheme(sec.by);
+        return '<section class="home-section" aria-labelledby="home-' + b.id + '">' +
+          '<h2 id="home-' + b.id + '">' + esc(sec.heading) + "</h2>" +
+          '<p class="section-note">' + esc(sec.note) + "</p>" +
+          '<ul class="view-cards">' + b.values.map(function (v) { return viewCard(b, v); }).join("") + "</ul>" +
+        "</section>";
+      }).join(""));
   }
 
   // ---------- Category (both views) ----------

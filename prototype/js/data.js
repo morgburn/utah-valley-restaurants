@@ -255,8 +255,8 @@ window.SITE = {
 
   // Home page [P1]: one section per browse view, one card per category.
   homeSections: [
-    { by: "category", heading: "What are we craving?" },
-    { by: "dining",   heading: "How do we want to eat?" }
+    { by: "category", heading: "What are we craving?",   note: "Pick a cuisine to see every restaurant that serves it." },
+    { by: "dining",   heading: "How do we want to eat?", note: "Pick how you want to be served, then narrow by cuisine, price or city." }
   ]
 };
 
