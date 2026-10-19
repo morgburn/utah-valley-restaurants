@@ -3,7 +3,7 @@
  * All restaurant blocks, on every page, come from ONE template: block().
  *
  * URLs
- *   index.html                                 Home (Explore)
+ *   index.html                                 Home (cards for every category in both views)
  *   category.html?by=<scheme>&id=<value>[&price=1&city=provo...]
  *   restaurant.html?id=<id>[&by=..&from=..] or [&q=..&qid=..]
  *   search.html?q=<query>[&qid=..][&f=scheme:value,...]
@@ -83,7 +83,9 @@
   function header(active) {
     active = active || {};
     var q = active.query || "";
-    var navs = browseSchemes().map(function (b) {
+    // Only the Food Type view is in the nav. Dining Experience lives on Home
+    // (as cards) and as the first "Narrow by" filter on every cuisine page.
+    var navs = browseSchemes().filter(function (b) { return b.nav !== false; }).map(function (b) {
       // No visible label: the groups are told apart by proximity (tight
       // spacing inside a group, a wide gap between groups). The label stays
       // for screen readers.
@@ -98,13 +100,14 @@
       '<header class="site-header">' +
         '<div class="bar">' +
           '<a class="wordmark" href="index.html"' + (active.home ? ' aria-current="page"' : "") + ">" +
-            '<span class="wordmark-main">Utah Valley</span> <span class="wordmark-sub">Eats</span></a>' +
+            '<span>Utah</span><span>Valley</span><span class="wordmark-sub">Eats</span></a>' +
           '<form class="search" action="search.html" method="get" role="search">' +
             '<label class="sr-only" for="q">Search restaurants</label>' +
             '<input id="q" name="q" type="search" autocomplete="off" value="' + esc(q) + '" ' +
               'placeholder="Try “tacos”, “$10”, “fancy SLC” or a restaurant name">' +
             '<button type="submit" data-log="search-submit">Search</button>' +
           "</form>" +
+          '<span class="bar-balance" aria-hidden="true"></span>' +
         "</div>" +
         '<nav class="views" aria-label="Browse">' +
           navs +
@@ -130,23 +133,28 @@
   }
 
   // ---------- Home ----------
+  // One card per category in each browse view: Food Type first, then
+  // Dining Experience. Same photo/name/count structure for both sections.
+  function viewCard(b, v) {
+    var P = window.PHOTOS;
+    var key = (P.byView[b.id] || {})[v.id];
+    var p = key && P.library[key];
+    var n = inValue(b.id, v.id).length;
+    return '<li class="view-card"><a href="' + categoryLink(b.id, v.id) + '" data-log-label="' + esc(b.label + ": " + v.label) + '">' +
+      '<span class="view-card-photo">' + (p ? '<img src="' + esc(P.base + p.id + P.params) + '" alt="" loading="lazy" width="360" height="230">' : "") + "</span>" +
+      '<span class="view-card-body"><span class="view-card-name">' + esc(v.label) + "</span>" +
+      '<span class="view-card-count">' + plural(n, "restaurant") + "</span></span></a></li>";
+  }
   function home() {
     document.title = S.title;
-    var picks = S.explore.map(function (p) {
-      var r = byId(p.restaurant);
-      return block(r, { eyebrow: p.label, eyebrowHref: categoryLink(p.by, p.id, p.narrow) });
-    }).join("");
-    return page({ home: true },
-      '<section class="intro">' +
-        "<h1>Where should we eat?</h1>" +
-        '<p class="lede">Browse ' + S.restaurants.length + " restaurants from Provo to Salt Lake by the food you want or by how you want to eat, " +
-          "using the menu above. Or search for anything: a dish, a price, a city, a night out.</p>" +
-      "</section>" +
-      '<section class="explore" aria-labelledby="explore-h">' +
-        '<h2 id="explore-h">Explore</h2>' +
-        '<p class="section-note">A few popular picks, each from a different way of narrowing. Click a label to see everything like it.</p>' +
-        '<ul class="blocks">' + picks + "</ul>" +
-      "</section>");
+    return page({ home: true }, S.homeSections.map(function (sec, i) {
+      var b = scheme(sec.by);
+      var tag = i === 0 ? "h1" : "h2";
+      return '<section class="home-section" aria-labelledby="home-' + b.id + '">' +
+        "<" + tag + ' id="home-' + b.id + '">' + esc(sec.heading) + "</" + tag + ">" +
+        '<ul class="view-cards">' + b.values.map(function (v) { return viewCard(b, v); }).join("") + "</ul>" +
+      "</section>";
+    }).join(""));
   }
 
   // ---------- Category (both views) ----------
@@ -195,6 +203,38 @@
     });
   }
 
+  // One rail template for every page that narrows a list.
+  // logAttrs: extra attributes for each checkbox (search adds qid/query).
+  function railHtml(pool, groupIds, chosen, logAttrs) {
+    var counts = facetCounts(pool, groupIds, chosen);
+    var any = groupIds.some(function (sid) { return chosen[sid].length; });
+    return groupIds.map(function (sid) {
+      var s = scheme(sid);
+      var opts = s.values.map(function (val) {
+        var n = counts[sid][val.id];
+        var on = chosen[sid].indexOf(val.id) !== -1;
+        var off = !n && !on;
+        if (off && !pool.some(function (r) { return tagsOf(r, sid).indexOf(val.id) !== -1; })) return ""; // never in this list
+        return '<label class="opt' + (on ? " is-on" : "") + (off ? " is-off" : "") + '"><input type="checkbox" data-scheme="' + sid + '" value="' + esc(val.id) + '"' +
+          (logAttrs || "") + (on ? " checked" : "") + (off ? " disabled" : "") + "><span>" + esc(val.label) + (val.detail ? ' <span class="opt-detail">' + esc(val.detail) + "</span>" : "") +
+          '</span><span class="opt-count" aria-label="' + plural(n, "restaurant") + '">' + n + "</span></label>";
+      }).join("");
+      return opts ? '<fieldset><legend>' + esc(s.narrowLabel) + "</legend>" + opts + "</fieldset>" : "";
+    }).join("") +
+    (any ? '<button type="button" class="clear" id="clear"' + (logAttrs || "") + ">Clear all</button>" : "");
+  }
+  function wireRail(rail, chosen, onChange) {
+    Array.prototype.forEach.call(rail.querySelectorAll("input"), function (box) {
+      box.addEventListener("change", function () {
+        var list = chosen[box.dataset.scheme];
+        var i = list.indexOf(box.value);
+        if (box.checked && i === -1) list.push(box.value);
+        if (!box.checked && i !== -1) list.splice(i, 1);
+        onChange();
+      });
+    });
+  }
+
   function wireCategory() {
     var el = document.getElementById("cat-data");
     if (!el) return;
@@ -208,23 +248,8 @@
 
     function draw() {
       var shown = applyChosen(pool, chosen);
-      var counts = facetCounts(pool, groupIds, chosen);
       var any = groupIds.some(function (sid) { return chosen[sid].length; });
-      document.getElementById("rail").innerHTML =
-        groupIds.map(function (sid) {
-          var s = scheme(sid);
-          return '<fieldset><legend>' + esc(s.narrowLabel) + "</legend>" +
-            s.values.map(function (val) {
-              var n = counts[sid][val.id];
-              var on = chosen[sid].indexOf(val.id) !== -1;
-              var off = !n && !on;
-              if (off && !pool.some(function (r) { return tagsOf(r, sid).indexOf(val.id) !== -1; })) return ""; // never in this category
-              return '<label class="opt' + (on ? " is-on" : "") + (off ? " is-off" : "") + '"><input type="checkbox" data-scheme="' + sid + '" value="' + esc(val.id) + '"' +
-                (on ? " checked" : "") + (off ? " disabled" : "") + "><span>" + esc(val.label) + (val.detail ? ' <span class="opt-detail">' + esc(val.detail) + "</span>" : "") +
-                '</span><span class="opt-count" aria-label="' + plural(n, "restaurant") + '">' + n + "</span></label>";
-            }).join("") + "</fieldset>";
-        }).join("") +
-        (any ? '<button type="button" class="clear" id="clear">Clear all</button>' : "");
+      document.getElementById("rail").innerHTML = railHtml(pool, groupIds, chosen);
       document.getElementById("count").textContent = any
         ? "Showing " + shown.length + " of " + plural(pool.length, "restaurant")
         : plural(pool.length, "restaurant");
@@ -240,15 +265,7 @@
       var u = new URLSearchParams({ by: d.by, id: d.cat });
       groupIds.forEach(function (sid) { if (chosen[sid].length) u.set(sid, chosen[sid].join(",")); });
       history.replaceState(null, "", "category.html?" + u.toString());
-      Array.prototype.forEach.call(document.querySelectorAll("#rail input"), function (box) {
-        box.addEventListener("change", function () {
-          var list = chosen[box.dataset.scheme];
-          var i = list.indexOf(box.value);
-          if (box.checked && i === -1) list.push(box.value);
-          if (!box.checked && i !== -1) list.splice(i, 1);
-          draw();
-        });
-      });
+      wireRail(document.getElementById("rail"), chosen, draw);
       ["clear", "clear2"].forEach(function (id) {
         var c = document.getElementById(id);
         if (c) c.addEventListener("click", function () { groupIds.forEach(function (sid) { chosen[sid] = []; }); draw(); });
@@ -366,30 +383,20 @@
       var pool = res.results.map(function (x) { return x.r; });
       var shown = applyChosen(pool, chosen);
       var any = FACET_GROUPS.some(function (g) { return chosen[g].length; });
-      var counts = facetCounts(pool, FACET_GROUPS, chosen);
       var understood = interpretation(res);
       var html = '<div class="results-head"><h1>' + (res.results.length
-          ? plural(any ? shown.length : res.results.length, "restaurant") + " for “" + esc(q) + "”"
+          ? plural(res.results.length, "restaurant") + " for “" + esc(q) + "”"
           : "No restaurants match “" + esc(q) + "”") + "</h1>" + understood + "</div>";
 
       if (!res.results.length) {
         out.innerHTML = html + noResults(res, q, qid);
         return;
       }
-      html += '<div class="facets" role="group" aria-label="Narrow results">' +
-        FACET_GROUPS.map(function (g) {
-          var s = scheme(g);
-          var btns = s.values.map(function (v) {
-            var n = counts[g][v.id], on = chosen[g].indexOf(v.id) !== -1;
-            if (!n && !on) return "";
-            return '<button type="button" class="facet' + (on ? " is-on" : "") + '" aria-pressed="' + on + '" data-g="' + g + '" data-v="' + v.id + '"' +
-              ' data-log-type="facet" data-qid="' + qid + '" data-query="' + esc(q) + '" data-log="' + g + ":" + v.id + '">' +
-              esc(v.label) + ' <span class="facet-n">' + n + "</span></button>";
-          }).join("");
-          return btns ? '<div class="facet-row"><span class="facet-label">' + esc(s.narrowLabel) + "</span>" + btns + "</div>" : "";
-        }).join("") +
-        (any ? '<button type="button" class="linklike" id="facet-clear" data-log-type="facet" data-qid="' + qid + '">Clear narrowing</button>' : "") +
-        "</div>";
+      var logAttrs = ' data-qid="' + qid + '" data-query="' + esc(q) + '"';
+      html += '<div class="with-rail">' +
+        '<aside class="rail" aria-label="Narrow these results" id="rail">' + railHtml(pool, FACET_GROUPS, chosen, logAttrs) + "</aside>" +
+        '<section aria-live="polite">' +
+          (any ? '<p class="count">Showing ' + shown.length + " of " + plural(pool.length, "restaurant") + "</p>" : "");
       var reasons = {};
       res.results.forEach(function (x) { reasons[x.r.id] = x.reasons; });
       html += '<ul class="blocks">' + (shown.length ? shown.map(function (r, i) {
@@ -397,17 +404,12 @@
           href: "restaurant.html?id=" + r.id + "&q=" + encodeURIComponent(q) + "&qid=" + qid,
           qid: qid, query: q, rank: i + 1, reasons: reasons[r.id]
         });
-      }).join("") : '<li class="empty"><h2>None of these results fit all of that</h2><p>Turn off one of the highlighted buttons above.</p></li>') + "</ul>";
+      }).join("") : '<li class="empty"><h2>None of these results fit all of that</h2><p>Uncheck a box on the left.</p></li>') + "</ul>" +
+        "</section></div>";
       out.innerHTML = html;
 
-      Array.prototype.forEach.call(out.querySelectorAll(".facet"), function (btn) {
-        btn.addEventListener("click", function () {
-          var list = chosen[btn.dataset.g], i = list.indexOf(btn.dataset.v);
-          if (i === -1) list.push(btn.dataset.v); else list.splice(i, 1);
-          sync(); draw();
-        });
-      });
-      var c = document.getElementById("facet-clear");
+      wireRail(document.getElementById("rail"), chosen, function () { sync(); draw(); });
+      var c = document.getElementById("clear");
       if (c) c.addEventListener("click", function () { FACET_GROUPS.forEach(function (g) { chosen[g] = []; }); sync(); draw(); });
     }
     function sync() {

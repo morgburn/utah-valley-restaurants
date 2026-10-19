@@ -25,11 +25,21 @@ Live: `https://morgburn.github.io/utah-valley-restaurants/prototype/`
 | D2 Dining Experience on the same nav line as Food Type | `app.js` `header()`; `.views` in CSS |
 | D3 Filter order: other view first, then price, then city | `filters` arrays in `data.js` |
 | D4 Sticky rail, no "Filter" heading, "Narrow by …" labels, live counts | `narrowLabel` in `data.js`; `wireCategory()`; `.rail { position: sticky }` |
-| D5 Home "Explore" replaces the two tile grids | `explore` in `data.js`; each label links to a pre-narrowed category page |
+| D5 Home "Explore" replaces the two tile grids | *Replaced by P1 below* |
 | D6 Costa Vida cross-listed under Counter Service | Costa Vida `dining: ["quick", "counter"]` |
 | D7 Log Haven and The Tree Room get a food type (Burgers & Grill) | their `category` arrays |
 
-Coverage: all 47 blocks are reachable in **both** views.
+### Changes from professor feedback (P1)
+
+| Change | Where it shows |
+|---|---|
+| Header nav lists only the Food Type categories; Dining Experience is removed from the nav | `nav: false` on the `dining` scheme in `data.js`; `header()` |
+| Cuisine pages narrow by Dining Experience (Quick & Cheap, Counter Service, Sit-Down, Fine Dining) instead of Service Style | `filters: ["dining", "price", "city"]` on `category` |
+| Home has two card sections: "What are we craving?" (one card per food type) and "How do we want to eat?" (one card per dining experience); Explore removed | `homeSections` in `data.js`; `home()` / `viewCard()` |
+| Search results use the same left "Narrow by" rail as category pages | `railHtml()` shared by `wireCategory()` and `wireSearch()` |
+| Stacked "Utah / Valley / Eats" wordmark at the far left; search centered on the bar | `.bar` 3-column grid in CSS |
+
+Coverage: all 47 blocks are reachable in **both** views (Dining Experience pages are reached from the Home cards).
 
 ## Palette
 
@@ -39,7 +49,7 @@ Coverage: all 47 blocks are reachable in **both** views.
 | Tint | `#DCE5F5` ice | chips, current nav item, "We searched for" chips |
 | Light tint | `#E6EDF8` | ground of the Narrow-by rail and search facet panel (a lighter step of the same tint) |
 | Shade | `#142648` midnight | header band, headings, restaurant names |
-| Accent | `#E59A1A` amber (complement of navy) | **only** the Search button, checked Narrow-by filters, pressed facet buttons |
+| Accent | `#E59A1A` amber (complement of navy) | **only** the Search button and checked Narrow-by filters (category pages and search results) |
 
 Neutrals: page `#ECF0F6`, card `#FFFFFF`, ink `#1A2233`, muted `#5A6478`, rule `#D5DCE8`.
 

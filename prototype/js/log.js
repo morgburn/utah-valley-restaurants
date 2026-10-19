@@ -107,7 +107,7 @@
     };
     var type = el.getAttribute("data-log-type") || "click";
     if (el.tagName === "INPUT" && el.type === "checkbox") {
-      type = "filter";
+      type = el.getAttribute("data-qid") ? "facet" : "filter";
       var lab = el.closest("label"), span = lab && lab.querySelector("span");
       d.label = (span ? span.innerText : el.value).replace(/\s+/g, " ").trim();
       d.target = el.getAttribute("data-scheme") + ":" + el.value;

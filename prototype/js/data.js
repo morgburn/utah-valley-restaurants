@@ -34,7 +34,7 @@ window.SITE = {
     {
       id: "category", label: "Food Type", role: "browse",
       narrowLabel: "Narrow by Food Type",
-      filters: ["service", "price", "city"],            // [D3] service style moved to 1st
+      filters: ["dining", "price", "city"],             // [D3] other view 1st; [P1] Dining Experience replaces Service Style
       values: [
         { id: "asian",          label: "Asian" },
         { id: "burgers-grill",  label: "Burgers & Grill" },
@@ -48,6 +48,7 @@ window.SITE = {
     },
     {
       id: "dining", label: "Dining Experience", role: "browse",
+      nav: false,                                        // [P1] not in the header nav; reached from Home cards
       narrowLabel: "Narrow by Dining Experience",
       filters: ["category", "price", "city"],            // [D3] food type first
       values: [
@@ -252,16 +253,10 @@ window.SITE = {
       tags: { category: ["hawaiian", "breakfast-cafe"], price: ["2"], service: ["counter"], dining: ["counter"], city: ["pleasant-grove", "salt-lake"] } }
   ],
 
-  // Home page "Explore" [D5]: each pick shows off a different way to narrow,
-  // and its label links to the category page with that narrowing applied,
-  // so people learn the header views instead of browsing from Home.
-  explore: [
-    { restaurant: "chom-burger",   label: "Under $12",              by: "dining",   id: "quick",    narrow: { price: ["1"] } },
-    { restaurant: "pho-plus",      label: "Sit-Down Asian",         by: "category", id: "asian",    narrow: { service: ["sit-down"] } },
-    { restaurant: "log-haven",     label: "Fine Dining in Salt Lake", by: "dining", id: "fine",     narrow: { city: ["salt-lake"] } },
-    { restaurant: "byu-creamery",  label: "Cones and Shakes",       by: "category", id: "dessert",  narrow: {} },
-    { restaurant: "ronis-mac-bar", label: "New: Pasta",             by: "category", id: "pasta",    narrow: {} },
-    { restaurant: "mo-bettahs",    label: "Counter Service in Orem", by: "dining",  id: "counter",  narrow: { city: ["orem"] } }
+  // Home page [P1]: one section per browse view, one card per category.
+  homeSections: [
+    { by: "category", heading: "What are we craving?" },
+    { by: "dining",   heading: "How do we want to eat?" }
   ]
 };
 
@@ -273,6 +268,12 @@ window.SITE = {
 window.PHOTOS = {
   base: "https://images.unsplash.com/",
   params: "?auto=format&fit=crop&w=720&h=460&q=70",
+  // Photo for each Home card (no photo repeats on the page)
+  byView: {
+    category: { "asian": "noodles", "burgers-grill": "burger", "mexican": "tacos", "pizza": "pizza",
+                "pasta": "pasta", "dessert": "icecream", "breakfast-cafe": "pancakes", "hawaiian": "bowl" },
+    dining:   { "quick": "hotdog", "counter": "burrito", "sit-down": "pho", "fine": "steak" }
+  },
   byCategory: {
     "asian": "noodles", "burgers-grill": "burger", "mexican": "tacos", "pizza": "pizza",
     "pasta": "pasta", "dessert": "icecream", "breakfast-cafe": "pancakes", "hawaiian": "bowl"
