@@ -47,7 +47,7 @@
     var d = details(r);
     var stand = standIn(r);
     if (r.image) return { src: r.image, fallback: stand.src, credit: "", real: true };
-    if (d.photo) return { src: d.photo, fallback: stand.src, credit: d.photoCredit || r.name, real: true, standCredit: stand.credit };
+    if (d.photo) return { src: d.photo, fallback: stand.src, credit: d.photoCredit || (r.name + "’s website"), real: true, standCredit: stand.credit };
     return { src: stand.src, credit: stand.credit, real: false };
   }
   function imgTag(ph, attrs) {

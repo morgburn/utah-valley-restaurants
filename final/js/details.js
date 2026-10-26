@@ -21,6 +21,7 @@
 window.DETAILS = {
   // ---------- Asian ----------
   "five-sushi-brothers": {
+    photo: "https://fivesushibrothers.com/wp-content/uploads/2019/01/5-Sushi-Brothers_0146-1.jpg",
     website: "https://fivesushibrothers.com/",
     about: "Late-night sushi bar near downtown Provo, open until midnight. Order at the counter or get it delivered.",
     known: ["Bandi roll", "Phat roll", "Lemon roll", "Gyoza"],
@@ -29,6 +30,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11 am–2 pm, 5 pm–12 am"], ["Sun", "Closed"]] }]
   },
   "thai-time": {
+    photo: "https://www.thaitimeutah.com/assets/images/home-beef/about/food2.jpg",
     website: "https://www.thaitimeutah.com/",
     about: "Small Thai kitchen on Cougar Boulevard, a few minutes from BYU.",
     known: ["Pad thai", "Green curry", "Thai fried rice", "Tom kha soup"],
@@ -62,13 +64,15 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11:30 am–9 pm"], ["Sun", "Closed"]] }]
   },
   "takashi": {
+    photo: "https://images.squarespace-cdn.com/content/v1/604fa3dbdd2ca0380b4224f6/5efeda03-a9f2-4c4b-969e-7556f283017b/0782EE57-4F6E-49F6-A71B-02307E90DA25_1_201_a.jpeg",
     website: "http://takashisushi.com/",
     about: "One of Salt Lake City's best-known sushi restaurants, in the Exchange Place district downtown.",
     known: ["Saikyo-miso sablefish", "Yin-yang salmon", "Wagyu nikumaki", "Strawberry Fields roll"],
-    notes: ["Walk-in only, no reservations. Expect a wait at dinner.", "Roughly $50–100 per person."],
+    notes: ["Lunch reservations are taken on a limited basis by phone. Otherwise expect a wait.", "Roughly $50–100 per person."],
     locations: [{ address: "18 W Market St, Salt Lake City, UT 84101", phone: "(801) 519-9595" }]
   },
   "tsunami-lehi": {
+    photo: "https://popmenucloud.com/cdn-cgi/image/width=1200,height=1200,fit=scale-down,format=auto/ztoqjder/4d737e8e-a329-4f52-b812-137e3f9c3ea8.jpg",
     website: "https://www.tsunamiutah.com/traverse-mountain",
     about: "Sushi bar and Japanese fusion dining room with five Utah locations. The closest one is at Traverse Mountain in Lehi.",
     known: ["Tsunami roll", "Cococabana roll", "Baby back ribs", "Seared ahi salad"],
@@ -80,6 +84,7 @@ window.DETAILS = {
 
   // ---------- Burgers & Grill ----------
   "chom-burger": {
+    photo: "https://videodelivery.net/2db584e019a5df1e841b955c5150facc/thumbnails/thumbnail.jpg",
     website: "https://www.chomburger.com/",
     about: "Local burger joint near downtown Provo. Order at the counter for smash burgers, fries and shakes.",
     known: ["Smash burgers", "Fries", "Shakes"],
@@ -98,6 +103,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11 am–9 pm"], ["Sun", "Closed"]] }]
   },
   "j-dawgs": {
+    photo: "https://images.getbento.com/accounts/51fc5bdd3fd51e19b501f74ad4a81a83/media/images/53739JDawgs_Home.jpg",
     website: "https://www.jdawgs.com/",
     about: "Provo hot dog stand that started in a tiny shack near BYU. Known for its secret sauce and quick lines.",
     known: ["Beef dog", "Polish dog", "Secret J Dawgs sauce", "Fries"],
@@ -106,6 +112,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11 am–10 pm"], ["Sun", "Closed"]] }]
   },
   "chick-fil-a": {
+    photo: "https://static.cfacdn.com/photos/restaurants/03304/large.jpg",
     website: "https://www.chick-fil-a.com/",
     about: "Fast food chicken chain with a drive-thru, and breakfast in the mornings.",
     known: ["Chicken sandwich", "Nuggets", "Waffle fries", "Milkshakes"],
@@ -114,6 +121,7 @@ window.DETAILS = {
       { name: "BYU campus", address: "Cougareat food court, Wilkinson Student Center, Provo" }]
   },
   "rodizio": {
+    photo: "https://www.rodiziogrill.com/provo-riverwoods/files/4428/BBQ_Fest_4.JPG",
     website: "https://www.rodiziogrill.com/provo-riverwoods/",
     about: "Brazilian steakhouse at Riverwoods. Gauchos bring more than a dozen grilled meats to your table and carve them there.",
     known: ["Full rodizio (unlimited meats)", "Gourmet salad bar", "Grilled pineapple", "Brazilian sides"],
@@ -122,6 +130,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "Dinner 5–8 pm"], ["Fri–Sat", "Lunch 11:30 am–3 pm, dinner 3–9 pm"], ["Sun", "Closed"]] }]
   },
   "ronis-mac-bar": {
+    photo: "https://www.ronismacbar.com/home-revamp/hero-food.jpg",
     website: "https://www.ronismacbar.com/",
     about: "Build-your-own mac and cheese bowls, started near BYU, with grill-style toppings like brisket and buffalo chicken.",
     known: ["Texas BBQ mac", "Chicken bacon ranch mac", "Buffalo chicken mac", "Grilled cheese"],
@@ -136,6 +145,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "11 am–8:30 pm"], ["Fri", "11 am–9:30 pm"], ["Sat", "8 am–9:30 pm (breakfast 8–11)"], ["Sun", "Closed"]] }]
   },
   "tucanos": {
+    photo: "https://videodelivery.net/c41dca790f12353ea2ccf02f33776e2a/thumbnails/thumbnail.jpg",
     website: "https://www.tucanos.com/",
     about: "Brazilian churrascaria by University Mall. Grilled meats come to your table on skewers, with a salad and side bar.",
     known: ["Churrasco (unlimited grilled meats)", "Grilled pineapple", "Salad and side bar"],
@@ -143,6 +153,7 @@ window.DETAILS = {
       hours: [["Mon–Wed", "11 am–10 pm"], ["Thu", "11 am–8 pm"], ["Fri–Sat", "11 am–11 pm"], ["Sun", "Closed"]] }]
   },
   "bam-bams-bbq": {
+    photo: "https://www.bambamsbbq.com/wp-content/uploads/2014/06/homepage.jpg",
     website: "https://www.bambamsbbq.com/",
     about: "Orem barbecue joint. Order smoked meats at the counter.",
     known: ["Brisket", "Ribs", "Pulled pork"],
@@ -150,6 +161,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11 am–9 pm"], ["Sun", "Closed"]] }]
   },
   "purple-turtle": {
+    photo: "https://purpleturtlediner.com/wp-content/uploads/2025/07/purple-turtle-entrance960X540.avif",
     website: "https://purpleturtlediner.com/",
     about: "Old-school Pleasant Grove drive-in, famous for its fries and thick shakes.",
     known: ["Fries", "Pastrami burger", "Onion rings", "Peach cobbler shake"],
@@ -167,6 +179,7 @@ window.DETAILS = {
       { name: "Sandy", address: "9604 S State St, Sandy, UT" }]
   },
   "log-haven": {
+    photo: "https://log-haven.com/wp-content/uploads/2023/11/Pepper-Nix-Photography7.jpg",
     website: "https://log-haven.com/",
     about: "Fine dining in a 1920s log mansion four miles up Millcreek Canyon, with waterfalls and forest outside the windows.",
     known: ["Seasonal dinner menu", "Weekend brunch"],
@@ -175,6 +188,7 @@ window.DETAILS = {
       hours: [["Mon–Fri", "Dinner 5–9 pm"], ["Sat–Sun", "Brunch 10 am–2 pm, dinner 5:30–9 pm"]] }]
   },
   "tree-room": {
+    photo: "https://www.sundanceresort.com/site/assets/files/7258/tree-room-tables-26-sierra5_edit.2976x1600.jpg",
     website: "https://www.sundanceresort.com/dining/tree-room/",
     about: "Sundance Mountain Resort's signature restaurant, built around a living tree, serving seasonal American dishes from local ingredients.",
     known: ["Seasonal dinner menu", "Prix fixe menu", "Award-winning wine list"],
@@ -220,6 +234,7 @@ window.DETAILS = {
       hours: [["Mon, Wed–Thu", "9 am–9 pm"], ["Tue, Fri–Sat", "9 am–11:30 pm"], ["Sun", "11 am–9 pm"]] }]
   },
   "taqueria-don-chuy": {
+    photo: "https://taqueriadonchuy.com/pluto-videos/LoxMOa5pX2P7/22187b8ebb5de6e9cd15/poster.jpg",
     website: "https://taqueriadonchuy.com/",
     about: "Springville taqueria that opens at 6:30 am and serves breakfast burritos and chilaquiles all day.",
     known: ["Birria quesataco", "Carne asada plate", "Al pastor plate", "Breakfast burritos"],
@@ -234,6 +249,7 @@ window.DETAILS = {
     locations: [{ name: "Original (North Temple)", address: "736 W North Temple, Salt Lake City, UT 84116", phone: "(801) 322-1489" }]
   },
   "lone-star-taqueria": {
+    photo: "https://lstaq.com/photos/patio.jpg",
     website: "https://www.lstaq.com/",
     about: "Casual taco stand in Cottonwood Heights known for fish tacos. It has a drive-thru and outdoor seating.",
     known: ["Fish tacos", "Carne asada tacos", "Fish burrito", "Tamales"],
@@ -244,6 +260,7 @@ window.DETAILS = {
 
   // ---------- Pizza ----------
   "brick-oven": {
+    photo: "https://static.spotapps.co/website_images/ab_websites/119111_website/video_poster.jpg",
     website: "https://brickovenrestaurants.com/",
     about: "Provo's pizza parlor since 1956, by BYU. Pizza and pasta are made from scratch daily, with soup, salad and pasta bars.",
     known: ["House-made root beer", "Romano-crust pizza", "Chicken fettuccine alfredo", "Chocolate mousse pie"],
@@ -251,6 +268,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "11 am–9 pm"], ["Fri–Sat", "11 am–10 pm"], ["Sun", "Closed"]] }]
   },
   "fat-daddys": {
+    photo: "https://static.spotapps.co/new_website_videos/114786_videos/114786_video_desktop_v1.jpg",
     website: "https://fatdaddyspizzeria.com/",
     about: "Downtown Provo pizzeria on Center Street with big pies, wings and a dining room.",
     known: ["Pepperoni pizza", "Tri Carne pizza", "BBQ chicken pizza", "Margherita"],
@@ -258,6 +276,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "11 am–9 pm"], ["Fri–Sat", "11 am–10 pm"], ["Sun", "4–8 pm"]] }]
   },
   "pizzeria-712": {
+    photo: "https://videodelivery.net/98b4338e273c86a6ce9d295a0aa1701a/thumbnails/thumbnail.jpg",
     website: "https://pizzeria712.com/",
     about: "Orem's wood-fired pizzeria. Seasonal Italian plates are made from local ingredients.",
     known: ["Serrano and sausage pizza", "Short rib appetizer", "Pesto pasta", "Peach cobbler"],
@@ -265,6 +284,7 @@ window.DETAILS = {
       hours: [["Every day", "11:30 am–9:30 pm"]] }]
   },
   "settebello": {
+    photo: "https://images.squarespace-cdn.com/content/v1/5e8628fd2335d7362289654b/1587870862133-ME40RAPHYSNUZ492AUSD/IMG_8791+2.JPG",
     website: "https://settebello.net/",
     about: "Certified Neapolitan pizzeria in downtown Salt Lake. Pizzas bake in about 90 seconds in a wood-fired oven.",
     known: ["Neapolitan pizza", "Focaccia", "Caprese salad", "Arugula salad"],
@@ -280,6 +300,7 @@ window.DETAILS = {
       hours: [["Mon–Thu, Sun", "11 am–10 pm"], ["Fri–Sat", "11 am–11 pm"]] }]
   },
   "old-spaghetti-factory": {
+    photo: "https://www.osf.com/wp-content/uploads/2018/10/Salt-Lake-City.jpg",
     website: "https://www.osf.com/location/salt-lake-city-ut/",
     about: "Classic spaghetti house in Trolley Square. Every entrée comes with sourdough bread, soup or salad, and ice cream.",
     known: ["Spaghetti and meatballs", "Chicken piccata", "Sourdough bread", "Spumoni ice cream"],
@@ -296,6 +317,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "7 am–10 pm"], ["Fri–Sat", "7 am–11 pm"], ["Sun", "Closed"]] }]
   },
   "brookers": {
+    photo: "https://brookersicecream.com/wp-content/uploads/0V9A4237-3.jpg",
     website: "https://brookersicecream.com/",
     about: "Ice cream shop with an American history theme. It has 13 drinking chocolates, one for each original colony.",
     known: ["Rotating ice cream flavors", "Shakes", "Drinking chocolate"],
@@ -352,6 +374,7 @@ window.DETAILS = {
       { name: "Provo (Riverwoods)", address: "4833 N Edgewood Dr, Provo, UT" }]
   },
   "ruths-diner": {
+    photo: "https://ruthsdiner.com/wp-content/uploads/2021/05/old-diner.jpg",
     website: "https://ruthsdiner.com/",
     about: "Canyon diner in Emigration Canyon, open since 1930 and partly housed in an old trolley car. Known for big breakfasts.",
     known: ["Biscuits and gravy", "Mile-high biscuits", "Hash browns"],
@@ -359,6 +382,7 @@ window.DETAILS = {
       hours: [["Thu–Mon", "8 am–9 pm (Fri–Sat until 10 pm)"], ["Tue–Wed", "Closed"]] }]
   },
   "the-kolache-place": {
+    photo: "https://static.wixstatic.com/media/760138_e2451219a87c400d87211d840ea7285e~mv2.jpg",
     website: "https://www.thekolacheplace.com/",
     about: "Morning bakery for sweet and savory kolaches. Grab and go until they sell out.",
     known: ["Sausage and cheese kolache", "Fruit kolaches"],
@@ -375,6 +399,7 @@ window.DETAILS = {
 
   // ---------- Hawaiian ----------
   "mo-bettahs": {
+    photo: "https://i0.wp.com/mobettahs.com/wp-content/uploads/2026/02/A-Taste-of-Home-Photo-Desktop-1.png",
     website: "https://www.mobettahs.com/",
     about: "Utah-born chain for Hawaiian plate lunches: teriyaki or kalua pork with rice and mac salad.",
     known: ["Teriyaki chicken plate", "Katsu chicken", "Kalua pork", "Mac salad"],
@@ -382,6 +407,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "10:30 am–10 pm"], ["Sun", "Closed"]] }]
   },
   "hungry-hawaiian": {
+    photo: "https://static-content.owner.com/funnel/images/14b28465-b086-4445-8fa8-076cac959b84",
     website: "https://hungryhawaiian.com/",
     about: "Downtown Provo spot for Hawaiian plates made to order, plus malasadas for dessert.",
     known: ["Lau lau plate", "Loco moco", "Poke bowl", "Malasadas with guava sauce"],
@@ -389,6 +415,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "11 am–9 pm"], ["Fri–Sat", "11 am–10 pm"], ["Sun", "Closed"]] }]
   },
   "leilanis": {
+    photo: "https://static-content.owner.com/funnel/images/2e4e72c4-583a-45d7-ace5-f0bcc4880a37",
     website: "https://leilanispolynesianplace.com/",
     about: "Polynesian plates in Lindon, including Tongan and Samoan favorites.",
     known: ["Poly combo plate", "Ota ika (raw fish)", "Lu pulu", "Sapasui"],

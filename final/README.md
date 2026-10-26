@@ -19,7 +19,7 @@ Prototype v1 stays live and unchanged at `/prototype/`. The exact version used i
 | # | Change | Where it shows |
 |---|---|---|
 | F4 | **Full restaurant pages**: description, Website / Call / Directions buttons, price, categories, "Known For", "Good to Know" tips, and every listed location with address (opens Google Maps), phone (tap to call) and hours. Chains also say which other cities they are in. Details were checked October 2026. | `js/details.js` (data), `restaurant()` in `app.js` |
-| F5 | **Real photos with a fallback.** Add `photo: "<url>"` (and optionally `photoCredit`) to a restaurant in `details.js`. If the image fails to load, the food stand-in appears instead and the caption switches to match. | `photoOf()`, `App.photoFailed()` in `app.js` |
+| F5 | **Real photos with a fallback.** 27 restaurants use a photo from their own website (hotlinked, credited on the restaurant page). The rest keep the food stand-in: big chains whose sites only show promo banners, restaurants with no website, and sites that block visits. Add `photo: "<url>"` (and optionally `photoCredit`) to a restaurant in `details.js`. If the image fails to load, the food stand-in appears instead and the caption switches to match. | `photoOf()`, `App.photoFailed()` in `app.js` |
 | F6 | **Corrected facts** found while researching (see below). | `data.js` lines marked `// [F6]` |
 
 ### F6 corrections
