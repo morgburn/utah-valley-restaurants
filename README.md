@@ -1,6 +1,6 @@
 # Restaurants of Utah Valley: Low-Fi Wireframe
 
-> **Prototype v1** lives in [`prototype/`](prototype/) (live at `/prototype/`). The wireframe below is kept as tested.
+> **Final prototype** lives in [`final/`](final/) (live at `/final/`). **Prototype v1** lives in [`prototype/`](prototype/) (live at `/prototype/`; the talk-aloud version is also on branch `prototype-v1-tested`). The wireframe below is kept as tested.
 
 A clickable, low-fidelity wireframe for usability testing. It is built from the information architecture produced by our card sort (Audrey Burrell and Morgan Burnside).
 
