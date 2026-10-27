@@ -116,7 +116,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11 am–10 pm"], ["Sun", "Closed"]] }]
   },
   "chick-fil-a": {
-    photo: "https://static.cfacdn.com/photos/restaurants/03304/large.jpg",
+    photo: "images/chick-fil-a.jpg", photoCredit: "Chick-fil-A",
     website: "https://www.chick-fil-a.com/",
     about: "Fast food chicken chain with a drive-thru, and breakfast in the mornings.",
     known: ["Chicken sandwich", "Nuggets", "Waffle fries", "Milkshakes"],
