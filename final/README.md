@@ -21,6 +21,7 @@ Prototype v1 stays live and unchanged at `/prototype/`. The exact version used i
 | F4 | **Full restaurant pages**: description, Website / Call / Directions buttons, price, categories, "Known For", "Good to Know" tips, and every listed location with address (opens Google Maps), phone (tap to call) and hours. Chains also say which other cities they are in. Details were checked October 2026. | `js/details.js` (data), `restaurant()` in `app.js` |
 | F5 | **Real photos for all 47 restaurants.** 26 are hotlinked from the restaurants' own websites; the other 21 were supplied by the team and are stored in `final/images/` (resized to 1200px max). Each is credited on its restaurant page. If a hotlinked photo ever fails to load, the food stand-in appears instead and the caption switches to match. To change a photo, set `photo:` on that restaurant in `details.js`. | `photoOf()`, `App.photoFailed()` in `app.js`; `images/` |
 | F7 | **Category nav bar removed** (Asian, Burgers & Grill, ...). People browse from the Home page cards ("What are we craving?" / "How do we want to eat?"), the breadcrumbs, the "Narrow by" filters and search. The wordmark links back to Home. | `header()` in `app.js` |
+| F8 | **Cafe Rio cross-listed under Fast Food** (stays in Counter Service too), like Costa Vida. | Cafe Rio `dining: ["quick", "counter"]` in `data.js` |
 | F6 | **Corrected facts** found while researching (see below). | `data.js` lines marked `// [F6]` |
 
 ### F6 corrections
