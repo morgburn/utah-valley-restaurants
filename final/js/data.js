@@ -241,7 +241,7 @@ window.SITE = {
     // ---------- Hawaiian ----------
     { id: "mo-bettahs", name: "Mo' Bettahs", multipleLocations: true,
       summary: "Hawaiian plate lunches: teriyaki chicken, kalua pork, rice and mac salad.",
-      tags: { category: ["hawaiian"], price: ["2"], service: ["fast"], dining: ["counter"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } },
+      tags: { category: ["hawaiian"], price: ["2"], service: ["fast"], dining: ["quick", "counter"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } },
     { id: "hungry-hawaiian", name: "Hungry Hawaiian Provo",
       summary: "Hawaiian plate lunches ordered at the counter.",
       tags: { category: ["hawaiian"], price: ["2"], service: ["counter"], dining: ["counter"], city: ["provo"] } },

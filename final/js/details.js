@@ -418,7 +418,7 @@ window.DETAILS = {
 
   // ---------- Hawaiian ----------
   "mo-bettahs": {
-    photo: "https://i0.wp.com/mobettahs.com/wp-content/uploads/2026/02/A-Taste-of-Home-Photo-Desktop-1.png",
+    photo: "images/mo-bettahs.jpg", photoCredit: "Mo\' Bettahs",
     website: "https://www.mobettahs.com/",
     about: "Utah-born chain for Hawaiian plate lunches: teriyaki or kalua pork with rice and mac salad.",
     known: ["Teriyaki chicken plate", "Katsu chicken", "Kalua pork", "Mac salad"],
