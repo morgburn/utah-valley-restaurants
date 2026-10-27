@@ -39,6 +39,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11 am–3 pm, 5–9 pm"], ["Sun", "Closed"]] }]
   },
   "cupbop": {
+    photo: "images/cupbop.jpg", photoCredit: "Cupbop",
     website: "https://www.cupbop.com/",
     about: "Utah-born Korean barbecue chain that started as a food truck. Meat, rice, noodles and sauce come in one cup.",
     known: ["Kko Kko chicken", "Krunchy chicken", "Bbop (beef)", "Spicy 7.5"],
@@ -47,6 +48,7 @@ window.DETAILS = {
       { name: "Salt Lake City", address: "45 E Broadway, Salt Lake City, UT" }]
   },
   "panda-express": {
+    photo: "images/panda-express.jpg", photoCredit: "Panda Express",
     website: "https://www.pandaexpress.com/",
     about: "American Chinese fast food. Choose a bowl, plate or bigger plate and pick your entrées.",
     known: ["Orange chicken", "Beijing beef", "Chow mein", "Honey walnut shrimp"],
@@ -58,6 +60,7 @@ window.DETAILS = {
       { name: "Orem (UVU campus)", address: "800 W University Pkwy, Orem, UT 84058" }]
   },
   "pho-plus": {
+    photo: "images/pho-plus.jpg", photoCredit: "Pho Plus",
     about: "Vietnamese noodle house on State Street in Orem, with big bowls of pho and banh mi.",
     known: ["Beef pho", "Shrimp pho", "Banh mi", "Spring rolls"],
     locations: [{ name: "Orem", address: "908 S State St, Orem, UT 84097", phone: "(801) 765-8808",
@@ -95,6 +98,7 @@ window.DETAILS = {
         hours: [["Mon–Thu", "11 am–9 pm"], ["Fri–Sat", "11 am–10 pm"], ["Sun", "Closed"]] }]
   },
   "seven-brothers": {
+    photo: "images/seven-brothers.jpg", photoCredit: "Seven Brothers Burgers",
     website: "https://www.sevenbrothersburgers.com/",
     about: "Burger shop started by seven brothers on Oahu's North Shore, now at the Shops at Riverwoods in Provo.",
     known: ["Paniolo burger", "Max burger", "Shem burger", "Polynesian salad"],
@@ -138,6 +142,7 @@ window.DETAILS = {
       hours: [["Mon–Fri", "11 am–10 pm"], ["Sat", "11 am–11 pm"], ["Sun", "Closed"]] }]
   },
   "cubbys": {
+    photo: "images/cubbys.jpg", photoCredit: "Cubby's",
     website: "https://www.cubbys.co/",
     about: "Casual Utah chain for chargrilled burgers, Chicago-style beef sandwiches and big salads. Saturday mornings add breakfast.",
     known: ["Chicago-style beef sandwich", "Tri-tip sandwich", "Burgers", "Salads"],
@@ -169,6 +174,7 @@ window.DETAILS = {
       hours: [["Mon", "10:30 am–6 pm"], ["Tue–Sat", "10:30 am–10 pm"], ["Sun", "Closed"]] }]
   },
   "crown-burgers": {
+    photo: "images/crown-burgers.jpg", photoCredit: "Crown Burgers",
     website: "https://www.crown-burgers.com/",
     about: "Salt Lake City chain founded in 1978, home of the Utah pastrami burger. It also serves Greek favorites like gyros.",
     known: ["Crown Burger (pastrami cheeseburger)", "Fry sauce", "Gyros", "Souvlaki"],
@@ -199,6 +205,7 @@ window.DETAILS = {
 
   // ---------- Mexican ----------
   "cafe-rio": {
+    photo: "images/cafe-rio.jpg", photoCredit: "Cafe Rio",
     website: "https://www.caferio.com/",
     about: "Utah-born chain where burritos, salads and enchiladas are made down the line in front of you, on fresh flour tortillas.",
     known: ["Sweet pork salad", "Sweet pork burrito", "Fresh flour tortillas", "Grilled steak"],
@@ -206,6 +213,7 @@ window.DETAILS = {
       hours: [["Mon–Wed, Sun", "10:30 am–10 pm"], ["Thu–Sat", "10:30 am–11 pm"]] }]
   },
   "costa-vida": {
+    photo: "images/costa-vida.jpg", photoCredit: "Costa Vida",
     website: "https://www.costavida.com/",
     about: "Utah chain for baja-style burritos, salads and sweet pork, made fast at the counter.",
     known: ["Sweet pork salad", "Burritos", "Enchiladas", "Tacos"],
@@ -219,6 +227,7 @@ window.DETAILS = {
       { name: "Lehi", address: "3750 N Thanksgiving Way, Lehi, UT" }]
   },
   "don-joaquin": {
+    photo: "images/don-joaquin.jpg", photoCredit: "Don Joaquin Street Tacos",
     about: "Street taco shops with a self-serve salsa bar. The Provo location is open until midnight every day.",
     known: ["Carnitas gringa", "Pork tacos", "Lengua burrito", "Carne asada fries"],
     locations: [
@@ -228,6 +237,7 @@ window.DETAILS = {
       { name: "Springville", address: "615 N Main St, Springville, UT" }]
   },
   "the-taco-spot": {
+    photo: "images/the-taco-spot.jpg", photoCredit: "The Taco Spot",
     about: "Taco shop on Cougar Boulevard by BYU, with deals for students and late hours on weekends.",
     known: ["Street tacos", "Birria", "Quesadillas", "Loaded fries"],
     locations: [{ name: "Provo", address: "62 W Cougar Blvd, Provo, UT 84604",
@@ -242,6 +252,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "6:30 am–11 pm"], ["Fri–Sat", "6:30 am–12 am"], ["Sun", "Closed"]] }]
   },
   "red-iguana": {
+    photo: "images/red-iguana.jpg", photoCredit: "Red Iguana",
     website: "https://www.rediguana.com/",
     about: "Family-run Salt Lake City landmark since 1985, famous for its many kinds of mole.",
     known: ["Mole (several kinds)", "Enchiladas", "Chimichanga", "Combination plates"],
@@ -293,6 +304,7 @@ window.DETAILS = {
 
   // ---------- Pasta ----------
   "olive-garden": {
+    photo: "images/olive-garden.jpg", photoCredit: "Olive Garden",
     website: "https://www.olivegarden.com/",
     about: "Italian-American chain. Every entrée comes with unlimited soup or salad and breadsticks.",
     known: ["Chicken alfredo", "Unlimited breadsticks", "Soup or salad", "Zeppoli (Italian doughnuts)"],
@@ -311,6 +323,7 @@ window.DETAILS = {
 
   // ---------- Dessert ----------
   "byu-creamery": {
+    photo: "images/byu-creamery.jpg", photoCredit: "BYU Creamery on Ninth",
     about: "BYU's campus ice cream shop and grill, with BYU Creamery ice cream plus cheap burgers and fries.",
     known: ["Ernestly Chocolate ice cream", "Shakes", "Bacon burger", "Onion rings"],
     locations: [{ name: "Provo", address: "1209 N 900 E, Provo, UT 84604", phone: "(801) 422-2663",
@@ -327,6 +340,7 @@ window.DETAILS = {
       { name: "Also in", address: "Lehi, Vineyard, Saratoga Springs, Spanish Fork, Draper and Fort Union" }]
   },
   "crumbl": {
+    photo: "images/crumbl.jpg", photoCredit: "Crumbl Cookies",
     website: "https://crumblcookies.com/",
     about: "Utah-born cookie chain with a menu of giant cookies that changes every week.",
     known: ["Milk chocolate chip", "Weekly rotating flavors"],
@@ -336,6 +350,7 @@ window.DETAILS = {
 
   // ---------- Breakfast & Cafe ----------
   "dennys": {
+    photo: "images/dennys.jpg", photoCredit: "Denny's",
     website: "https://www.dennys.com/",
     about: "All-day breakfast diner. The Utah County locations listed here are open 24 hours.",
     known: ["Grand Slam", "Pancakes", "Moons Over My Hammy"],
@@ -345,18 +360,21 @@ window.DETAILS = {
       { name: "Lehi", address: "101 N 1200 E, Lehi, UT 84043", phone: "(801) 766-9129", hours: [["Every day", "Open 24 hours"]] }]
   },
   "the-brunch-house": {
+    photo: "images/the-brunch-house.jpg", photoCredit: "The Brunch House",
     about: "Busy Provo brunch spot, open every day including Sunday. Expect a wait on weekends.",
     known: ["Chilaquiles", "French toast", "Monte Cristo", "Corned beef hash"],
     locations: [{ name: "Provo", address: "1145 N 500 W, Provo, UT 84604", phone: "(385) 223-8953",
       hours: [["Every day", "8 am–2 pm"]] }]
   },
   "gurus-cafe": {
+    photo: "images/gurus-cafe.jpg", photoCredit: "Guru's Cafe",
     about: "Laid-back downtown Provo cafe on Center Street with rice bowls, wraps, salads and sweet potato fries.",
     known: ["Guru salad", "Rice bowls", "Sweet potato fries", "Wraps"],
     locations: [{ name: "Provo", address: "45 E Center St, Provo, UT 84606", phone: "(801) 375-4878",
       hours: [["Mon–Wed", "8 am–9 pm"], ["Thu", "9 am–9 pm"], ["Fri–Sat", "8 am–10 pm"], ["Sun", "9 am–2 pm"]] }]
   },
   "kitchen-eighty-eight": {
+    photo: "images/kitchen-eighty-eight.jpg", photoCredit: "Kitchen Eighty-Eight",
     about: "American Fork grill that started as a food truck. It's known for tri-tip with peri peri and chimichurri, and for its burgers.",
     known: ["Grilled tri-tip with peri peri and chimichurri", "Classic burger", "Fries"],
     locations: [
@@ -365,6 +383,7 @@ window.DETAILS = {
       { name: "Kaysville", address: "260 W 200 N, Kaysville, UT" }]
   },
   "kneaders": {
+    photo: "images/kneaders.jpg", photoCredit: "Kneaders Bakery & Cafe",
     website: "https://www.kneaders.com/",
     about: "Utah bakery-cafe chain for sandwiches on fresh bread, soups and pastries, and all-you-can-eat French toast.",
     known: ["French toast", "Turkey bacon avocado sandwich", "Tomato soup", "Pastries"],
@@ -423,6 +442,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11 am–7 pm"], ["Sun", "Closed"]] }]
   },
   "buddas-bakery": {
+    photo: "images/buddas-bakery.jpg", photoCredit: "Budda's Bakery & Breakfast",
     about: "Hawaiian-style bakery and breakfast spot in Pleasant Grove. Order at the counter.",
     known: ["Coconut bread", "Spam fried rice", "Bulgogi bento", "Sticky budda roll"],
     locations: [{ name: "Pleasant Grove", address: "205 E 700 S, Pleasant Grove, UT 84062", phone: "(801) 701-0617",
