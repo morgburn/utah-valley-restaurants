@@ -162,7 +162,7 @@ window.SITE = {
     // ---------- Mexican ----------
     { id: "cafe-rio", name: "Cafe Rio", multipleLocations: true, photo: "burrito",
       summary: "Sweet pork burritos, salads and fresh tortillas made in front of you.",
-      tags: { category: ["mexican"], price: ["2"], service: ["fast"], dining: ["quick", "counter"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } }, // [F8] also Fast Food
+      tags: { category: ["mexican"], price: ["1"], service: ["fast"], dining: ["quick", "counter"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } }, // [F8] also Fast Food; $ like Costa Vida
     { id: "costa-vida", name: "Costa Vida", multipleLocations: true, photo: "burrito",
       summary: "Burritos, salads and sweet pork made fast at the counter.",
       tags: { category: ["mexican"], price: ["1"], service: ["fast"], dining: ["quick", "counter"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } }, // [D6] also Counter service
