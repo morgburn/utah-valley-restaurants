@@ -173,8 +173,8 @@
     document.title = v.label + " | " + S.title;
     var other = browseSchemes().filter(function (x) { return x.id !== b.id; })[0];
     return page({ by: b.id, id: v.id },
-      crumbs([{ label: "Home", href: "index.html" }, { label: b.label + ": " + v.label }]) +
-      '<div class="page-head"><p class="view-name">' + esc(b.label) + "</p><h1>" + esc(v.label) + "</h1></div>" +
+      '<div id="crumbs">' + crumbs([{ label: "Home", href: "index.html" }, { label: b.label + ": " + v.label }]) + "</div>" +
+      '<div class="page-head"><p class="view-name" id="view-name">' + esc(b.label) + '</p><h1 id="page-h1">' + esc(v.label) + "</h1></div>" +
       '<div class="with-rail">' +
         '<aside class="rail" aria-label="Narrow these restaurants" id="rail"></aside>' +
         '<section aria-live="polite"><p class="count" id="count"></p><ul class="blocks" id="list"></ul></section>' +
@@ -241,57 +241,75 @@
     });
   }
 
+  // [F10] Every category page has the same four "Narrow by" groups in the
+  // same order. The category you came in through starts checked, so you can
+  // add another (Mexican + Pizza) or switch without going back Home. The
+  // heading and breadcrumb always describe what is checked.
+  var RAIL_GROUPS = ["category", "dining", "price", "city"];
+  function joinAnd(a) { return a.length < 3 ? a.join(" and ") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
   function wireCategory() {
     var el = document.getElementById("cat-data");
     if (!el) return;
     var d = JSON.parse(el.textContent);
-    var b = scheme(d.by);
-    var pool = inValue(d.by, d.cat).sort(byName);
-    var groupIds = b.filters;
+    var pool = S.restaurants.slice().sort(byName);
     var p = params();
     var chosen = {};
-    groupIds.forEach(function (sid) { chosen[sid] = (p.get(sid) || "").split(",").filter(Boolean); });
+    RAIL_GROUPS.forEach(function (sid) {
+      chosen[sid] = p.has(sid) ? (p.get(sid) || "").split(",").filter(Boolean) : (sid === d.by ? [d.cat] : []);
+    });
+
+    function heading() {
+      var parts = [], views = [];
+      browseSchemes().forEach(function (b) {
+        if (!chosen[b.id].length) return;
+        views.push(b.label);
+        parts.push(joinAnd(chosen[b.id].map(function (v) { return label(b.id, v); })));
+      });
+      return parts.length ? { view: views.join(" · "), title: parts.join(" · ") } : { view: "Browse", title: "All Restaurants" };
+    }
+    // where a card links "from", for the restaurant page breadcrumb
+    function fromFor(r) {
+      var order = [d.by].concat(browseSchemes().map(function (b) { return b.id; }).filter(function (x) { return x !== d.by; }));
+      for (var i = 0; i < order.length; i++) {
+        var hit = tagsOf(r, order[i]).filter(function (v) { return chosen[order[i]].indexOf(v) !== -1; })[0];
+        if (hit) return "&by=" + order[i] + "&from=" + hit;
+      }
+      return "";
+    }
+    function alsoInChosen(r) {
+      var links = tagsOf(r, d.by).filter(function (v) { return chosen[d.by].length && chosen[d.by].indexOf(v) === -1; })
+        .map(function (v) { return '<a href="' + categoryLink(d.by, v) + '">' + esc(label(d.by, v)) + "</a>"; });
+      return links.length ? "Also in " + links.join(" and ") : "";
+    }
 
     function draw() {
       var shown = applyChosen(pool, chosen);
-      var any = groupIds.some(function (sid) { return chosen[sid].length; });
-      document.getElementById("rail").innerHTML = railHtml(pool, groupIds, chosen);
-      document.getElementById("count").textContent = any
-        ? "Showing " + shown.length + " of " + plural(pool.length, "restaurant")
-        : plural(pool.length, "restaurant");
+      var h = heading();
+      var u = new URLSearchParams({ by: d.by, id: d.cat });
+      RAIL_GROUPS.forEach(function (sid) { u.set(sid, chosen[sid].join(",")); });
+      // cards carry this list's address so the restaurant page breadcrumb leads back to it
+      var back = "&list=" + encodeURIComponent(u.toString()) + "&listLabel=" + encodeURIComponent(h.title);
+      document.getElementById("view-name").textContent = h.view;
+      document.getElementById("page-h1").textContent = h.title;
+      document.getElementById("crumbs").innerHTML = crumbs([{ label: "Home", href: "index.html" }, { label: h.title }]);
+      document.title = h.title + " | " + S.title;
+      document.getElementById("rail").innerHTML = railHtml(pool, RAIL_GROUPS, chosen);
+      document.getElementById("count").textContent = plural(shown.length, "restaurant");
       document.getElementById("list").innerHTML = shown.length
         ? shown.map(function (r) {
-            return block(r, {
-              href: "restaurant.html?id=" + r.id + "&by=" + d.by + "&from=" + d.cat,
-              note: alsoIn(r, d.by, d.cat)
-            });
+            return block(r, { href: "restaurant.html?id=" + r.id + fromFor(r) + back, note: alsoInChosen(r) });
           }).join("")
         : '<li class="empty"><h2>Nothing here with those choices</h2><p>Uncheck a box on the left, or <button type="button" class="linklike" id="clear2">clear all</button>.</p></li>';
-      // keep the URL in step so Back and shared links keep the narrowing
-      var u = new URLSearchParams({ by: d.by, id: d.cat });
-      groupIds.forEach(function (sid) { if (chosen[sid].length) u.set(sid, chosen[sid].join(",")); });
+      // keep the URL in step so Back and shared links keep the choices
       history.replaceState(null, "", "category.html?" + u.toString());
       wireRail(document.getElementById("rail"), chosen, draw);
       ["clear", "clear2"].forEach(function (id) {
         var c = document.getElementById(id);
-        if (c) c.addEventListener("click", function () { groupIds.forEach(function (sid) { chosen[sid] = []; }); draw(); });
+        if (c) c.addEventListener("click", function () { RAIL_GROUPS.forEach(function (sid) { chosen[sid] = []; }); draw(); });
       });
     }
     draw();
   }
-  // Cross-listed blocks say where else they live, linking to that page.
-  function alsoIn(r, by, cat) {
-    var links = [];
-    browseSchemes().forEach(function (s) {
-      tagsOf(r, s.id).forEach(function (vid) {
-        if (s.id === by && vid === cat) return;
-        if (s.id !== by) return; // same-view cross-listings only, keeps the card quiet
-        links.push('<a href="' + categoryLink(s.id, vid) + '">' + esc(label(s.id, vid)) + "</a>");
-      });
-    });
-    return links.length ? "Also in " + links.join(" and ") : "";
-  }
-
   // ---------- Restaurant ----------
   function restaurant() {
     var p = params();
@@ -307,7 +325,10 @@
     } else {
       var by = p.get("by"), from = p.get("from");
       if (!by || tagsOf(r, by).indexOf(from) === -1) { by = "category"; from = tagsOf(r, "category")[0]; }
-      if (from) { trail.push({ label: scheme(by).label + ": " + label(by, from), href: categoryLink(by, from) }); active.by = by; active.id = from; }
+      var list = p.get("list");
+      if (list && p.get("listLabel")) trail.push({ label: p.get("listLabel"), href: "category.html?" + list });   // [F10] back to the exact list
+      else if (from) trail.push({ label: scheme(by).label + ": " + label(by, from), href: categoryLink(by, from) });
+      if (from) { active.by = by; active.id = from; }
     }
     trail.push({ label: r.name });
     var ph = photoOf(r);
