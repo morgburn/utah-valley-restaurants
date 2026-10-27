@@ -163,10 +163,11 @@ main.wrap { padding-top: 22px; padding-bottom: 80px; min-height: 60vh; }
 .block-why, .block-note { margin: 12px 8px 0; padding-top: 10px; border-top: 1px dashed var(--rule); font-size: 13px; color: var(--muted); }
 .why-label { font-weight: 700; color: var(--shade); }
 
-/* ---------- Category: sticky Narrow-by rail [D4] ---------- */
+/* ---------- Category: Narrow-by rail [D4] ----------
+   [F11] Full length, scrolls with the page: no inner scrollbar, so no
+   filter group can hide below the box's bottom edge. */
 .with-rail { display: grid; grid-template-columns: var(--rail) 1fr; gap: 32px; align-items: start; }
 .rail {
-  position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto;
   /* tint ground sets the narrowing controls apart from the white result cards */
   background: var(--tint-light); border: 1px solid #B9C8E2; border-radius: var(--r-card); padding: 18px 16px;
 }
@@ -296,7 +297,6 @@ main.wrap { padding-top: 22px; padding-bottom: 80px; min-height: 60vh; }
   .views li:first-child a { margin-left: -12px; }
   .views li:last-child a { margin-right: -12px; }
   .with-rail { grid-template-columns: 1fr; gap: 20px; }
-  .rail { position: static; max-height: none; }
   .rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 20px; }
   .rail .clear { justify-self: start; }
   .detail { grid-template-columns: 1fr; gap: 20px; }
