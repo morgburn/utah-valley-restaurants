@@ -12,7 +12,7 @@ Prototype v1 stays live and unchanged at `/prototype/`. The exact version used i
 |---|---|---|
 | F1 | "Quick & Cheap" renamed **Fast Food**. Cheap is already covered by the price filters, and "Fast Food" matches participants' words for the other service-style categories. Members are unchanged. Searching "fast food" or "quick and cheap" now opens this category. | `data.js` dining values; `concepts.js` `fastfood` concept |
 | F2 | **Search understands numbers.** "88", "kitchen 88" and "eighty-eight" find Kitchen Eighty-Eight. "712" and "seven twelve" find Pizzeria Seven Twelve, and "5 sushi" finds Five Sushi Brothers. "$10" and "10 dollars" still mean price. | `search.js` step 1b, `numberRuns()`, `nameVariants()` |
-| F3 | **Header nav** spreads across the full width of the header, with larger text (15–19px, semibold). The search band is a lighter navy (`--header` #1E3768, was #142648) so the nav stands out more. | `css/style.css` `.views`, `.site-header` |
+| F3 | **Header nav** spreads across the full width of the header, with larger text (15–19px, semibold). The search band is a lighter navy (`--header` #1E3768, was #142648) so the nav stands out more. *Nav later removed, see F7; the lighter band stays.* | `css/style.css` `.views`, `.site-header` |
 
 ## Upgrades to a fully working prototype
 
@@ -20,6 +20,7 @@ Prototype v1 stays live and unchanged at `/prototype/`. The exact version used i
 |---|---|---|
 | F4 | **Full restaurant pages**: description, Website / Call / Directions buttons, price, categories, "Known For", "Good to Know" tips, and every listed location with address (opens Google Maps), phone (tap to call) and hours. Chains also say which other cities they are in. Details were checked October 2026. | `js/details.js` (data), `restaurant()` in `app.js` |
 | F5 | **Real photos with a fallback.** 27 restaurants use a photo from their own website (hotlinked, credited on the restaurant page). The rest keep the food stand-in: big chains whose sites only show promo banners, restaurants with no website, and sites that block visits. Add `photo: "<url>"` (and optionally `photoCredit`) to a restaurant in `details.js`. If the image fails to load, the food stand-in appears instead and the caption switches to match. | `photoOf()`, `App.photoFailed()` in `app.js` |
+| F7 | **Category nav bar removed** (Asian, Burgers & Grill, ...). People browse from the Home page cards ("What are we craving?" / "How do we want to eat?"), the breadcrumbs, the "Narrow by" filters and search. The wordmark links back to Home. | `header()` in `app.js` |
 | F6 | **Corrected facts** found while researching (see below). | `data.js` lines marked `// [F6]` |
 
 ### F6 corrections

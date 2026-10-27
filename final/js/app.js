@@ -96,18 +96,7 @@
   function header(active) {
     active = active || {};
     var q = active.query || "";
-    // Only the Food Type view is in the nav. Dining Experience lives on Home
-    // (as cards) and as the first "Narrow by" filter on every cuisine page.
-    var navs = browseSchemes().filter(function (b) { return b.nav !== false; }).map(function (b) {
-      // No visible label: the groups are told apart by proximity (tight
-      // spacing inside a group, a wide gap between groups). The label stays
-      // for screen readers.
-      return '<div class="nav-group"><ul aria-label="' + esc(b.label) + '">' +
-        b.values.map(function (v) {
-          var on = active.by === b.id && active.id === v.id;
-          return '<li><a href="' + categoryLink(b.id, v.id) + '"' + (on ? ' class="on" aria-current="page"' : "") + ">" + esc(v.label) + "</a></li>";
-        }).join("") + "</ul></div>";
-    }).join("");
+    // [F7] No category nav bar: browse from the Home cards or search.
     return (
       '<a class="skip" href="#main">Skip to content</a>' +
       '<header class="site-header">' +
@@ -122,9 +111,6 @@
           "</form>" +
           '<span class="bar-balance" aria-hidden="true"></span>' +
         "</div>" +
-        '<nav class="views" aria-label="Browse">' +
-          navs +
-        "</nav>" +
       "</header>"
     );
   }
