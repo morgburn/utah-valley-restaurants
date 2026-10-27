@@ -104,7 +104,7 @@ window.SITE = {
       tags: { category: ["asian"], price: ["2"], service: ["counter"], dining: ["counter"], city: ["provo"] } },
     { id: "cupbop", name: "Cupbop", multipleLocations: true,
       summary: "Korean barbecue rice bowls served in a cup, fast and filling.",
-      tags: { category: ["asian"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["provo", "orem", "lehi", "salt-lake"] } },
+      tags: { category: ["asian"], price: ["1"], service: ["counter"], dining: ["quick", "counter"], city: ["provo", "orem", "lehi", "salt-lake"] } },
     { id: "panda-express", name: "Panda Express", multipleLocations: true,
       summary: "Orange chicken, chow mein and other American Chinese plates, served fast.",
       tags: { category: ["asian"], price: ["1"], service: ["fast"], dining: ["quick"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } },
@@ -121,7 +121,7 @@ window.SITE = {
     // ---------- Burgers & Grill ----------
     { id: "chom-burger", name: "CHOM Burger", multipleLocations: true,
       summary: "Smash burgers, fries and shakes ordered at the counter.",
-      tags: { category: ["burgers-grill"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["provo", "american-fork"] } }, // [F6] + American Fork
+      tags: { category: ["burgers-grill"], price: ["1"], service: ["counter"], dining: ["quick", "counter"], city: ["provo", "american-fork"] } }, // [F6] + American Fork
     { id: "seven-brothers", name: "Seven Brothers Burgers", multipleLocations: true,
       summary: "Hawaiian-born burger joint with big burgers and fries.",
       tags: { category: ["burgers-grill"], price: ["2"], service: ["counter"], dining: ["counter"], city: ["provo", "pleasant-grove", "salt-lake"] } },
@@ -139,7 +139,7 @@ window.SITE = {
       tags: { category: ["burgers-grill", "pasta"], price: ["2"], service: ["counter"], dining: ["counter"], city: ["provo"] } }, // [D1] also Pasta
     { id: "cubbys", name: "Cubby's", multipleLocations: true,
       summary: "Chargrilled burgers, Chicago-style beef sandwiches and big salads.",
-      tags: { category: ["burgers-grill", "breakfast-cafe"], price: ["2"], service: ["sit-down"], dining: ["sit-down", "counter"], city: ["provo", "salt-lake"] } },
+      tags: { category: ["burgers-grill", "breakfast-cafe"], price: ["2"], service: ["sit-down"], dining: ["counter"], city: ["provo", "salt-lake"] } },
     { id: "tucanos", name: "Tucanos Brazilian Grill", multipleLocations: true, photo: "steak",
       summary: "Brazilian churrascaria with all-you-can-eat grilled meats and a salad bar.",
       tags: { category: ["burgers-grill"], price: ["3"], service: ["sit-down"], dining: ["fine"], city: ["orem", "salt-lake"] } },
@@ -168,30 +168,30 @@ window.SITE = {
       tags: { category: ["mexican"], price: ["1"], service: ["fast"], dining: ["quick", "counter"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } }, // [D6] also Counter service
     { id: "don-joaquin", name: "Don Joaquin Street Tacos", multipleLocations: true,
       summary: "Street tacos and quesadillas with a self-serve salsa bar.",
-      tags: { category: ["mexican"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["provo", "lindon", "springville"] } },
+      tags: { category: ["mexican"], price: ["1"], service: ["counter"], dining: ["quick", "counter"], city: ["provo", "lindon", "springville"] } },
     { id: "the-taco-spot", name: "The Taco Spot", multipleLocations: true,
       summary: "Tacos, burritos and Mexican plates ordered at the counter.",
       tags: { category: ["mexican"], price: ["2"], service: ["counter"], dining: ["counter"], city: ["provo"] } },
     { id: "taqueria-don-chuy", name: "Taquería Don Chuy",
       summary: "Springville taqueria that opens at 6:30 am, with breakfast burritos served all day.",
-      tags: { category: ["mexican", "breakfast-cafe"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["springville"] } },
+      tags: { category: ["mexican", "breakfast-cafe"], price: ["1"], service: ["counter"], dining: ["quick", "counter"], city: ["springville"] } },
     { id: "red-iguana", name: "Red Iguana", multipleLocations: true,
       summary: "Salt Lake City favorite for mole and Mexican dishes, served at the table.",
       tags: { category: ["mexican"], price: ["2"], service: ["sit-down"], dining: ["sit-down"], city: ["salt-lake"] } },
     { id: "lone-star-taqueria", name: "Lone Star Taqueria",
       summary: "Cottonwood Heights taco stand known for fish tacos, with a drive-thru.",
-      tags: { category: ["mexican"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["salt-lake"] } },
+      tags: { category: ["mexican"], price: ["1"], service: ["counter"], dining: ["quick", "counter"], city: ["salt-lake"] } },
 
     // ---------- Pizza ----------
     { id: "brick-oven", name: "Brick Oven",
       summary: "Long-running Provo spot for pizza, pasta and house root beer.",
-      tags: { category: ["pizza", "pasta"], price: ["3"], service: ["sit-down"], dining: ["fine", "sit-down"], city: ["provo"] } }, // [D1+] also Pasta
+      tags: { category: ["pizza", "pasta"], price: ["3"], service: ["sit-down"], dining: ["sit-down"], city: ["provo"] } }, // [D1+] also Pasta
     { id: "fat-daddys", name: "Fat Daddy's Pizzeria",
       summary: "Casual sit-down pizzeria with big pies and wings.",
       tags: { category: ["pizza"], price: ["2"], service: ["sit-down"], dining: ["sit-down"], city: ["provo"] } },
     { id: "pizzeria-712", name: "Pizzeria Seven Twelve",
       summary: "Wood-fired pizza and seasonal Italian plates.",
-      tags: { category: ["pizza", "pasta"], price: ["3"], service: ["sit-down"], dining: ["fine"], city: ["orem"] } },            // [D1+] also Pasta
+      tags: { category: ["pizza", "pasta"], price: ["3"], service: ["sit-down"], dining: ["sit-down"], city: ["orem"] } },            // [D1+] also Pasta
     { id: "settebello", name: "Settebello Pizzeria Napoletana",
       summary: "Neapolitan wood-fired pizza in downtown Salt Lake.",
       tags: { category: ["pizza"], price: ["2"], service: ["sit-down"], dining: ["sit-down"], city: ["salt-lake"] } },
@@ -207,13 +207,13 @@ window.SITE = {
     // ---------- Dessert ----------
     { id: "byu-creamery", name: "BYU Creamery on Ninth", photo: "cone",
       summary: "Campus favorite for ice cream cones, shakes and cheap burgers.",
-      tags: { category: ["dessert", "burgers-grill"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["provo"] } },
+      tags: { category: ["dessert", "burgers-grill"], price: ["1"], service: ["counter"], dining: ["counter"], city: ["provo"] } },
     { id: "brookers", name: "Brooker's Founding Flavors Ice Cream", multipleLocations: true,
       summary: "Scoop shop with rotating flavors, cones and shakes.",
-      tags: { category: ["dessert"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["provo", "salt-lake"] } },
+      tags: { category: ["dessert"], price: ["1"], service: ["counter"], dining: ["counter"], city: ["provo", "salt-lake"] } },
     { id: "crumbl", name: "Crumbl Cookies", multipleLocations: true, photo: "cookies",
       summary: "A rotating weekly menu of giant gourmet cookies.",
-      tags: { category: ["dessert"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } },
+      tags: { category: ["dessert"], price: ["1"], service: ["counter"], dining: ["counter"], city: ["provo", "orem", "pleasant-grove", "lehi", "salt-lake"] } },
 
     // ---------- Breakfast & Cafe ----------
     { id: "dennys", name: "Denny's", multipleLocations: true,
@@ -224,7 +224,7 @@ window.SITE = {
       tags: { category: ["breakfast-cafe"], price: ["2"], service: ["sit-down"], dining: ["sit-down"], city: ["provo"] } },
     { id: "gurus-cafe", name: "Guru's Cafe", multipleLocations: true,
       summary: "Laid-back downtown cafe with rice bowls, wraps, salads and sweet potato fries.",
-      tags: { category: ["breakfast-cafe"], price: ["2"], service: ["sit-down"], dining: ["sit-down"], city: ["provo", "orem"] } },
+      tags: { category: ["breakfast-cafe"], price: ["2"], service: ["sit-down"], dining: ["counter"], city: ["provo", "orem"] } },
     { id: "kitchen-eighty-eight", name: "Kitchen Eighty-Eight", multipleLocations: true, photo: "steak",
       summary: "Grilled tri-tip and burgers from a former food truck, ordered at the counter.",
       tags: { category: ["burgers-grill"], price: ["2"], service: ["counter"], dining: ["counter"], city: ["american-fork"] } }, // [F6] was Breakfast & Cafe in Provo; real place is a grill in American Fork
@@ -236,7 +236,7 @@ window.SITE = {
       tags: { category: ["breakfast-cafe"], price: ["2"], service: ["sit-down"], dining: ["sit-down"], city: ["salt-lake"] } },
     { id: "the-kolache-place", name: "The Kolache Place", multipleLocations: true,
       summary: "Sweet and savory kolaches and pastries to grab and go.",
-      tags: { category: ["breakfast-cafe"], price: ["1"], service: ["counter"], dining: ["quick"], city: ["orem", "salt-lake"] } },
+      tags: { category: ["breakfast-cafe"], price: ["1"], service: ["counter"], dining: ["counter"], city: ["orem", "salt-lake"] } },
 
     // ---------- Hawaiian ----------
     { id: "mo-bettahs", name: "Mo' Bettahs", multipleLocations: true,
