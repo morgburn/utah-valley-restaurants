@@ -150,7 +150,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "11 am–8:30 pm"], ["Fri", "11 am–9:30 pm"], ["Sat", "8 am–9:30 pm (breakfast 8–11)"], ["Sun", "Closed"]] }]
   },
   "tucanos": {
-    photo: "https://videodelivery.net/c41dca790f12353ea2ccf02f33776e2a/thumbnails/thumbnail.jpg",
+    photo: "images/tucanos.jpg", photoCredit: "Tucanos Brazilian Grill",
     website: "https://www.tucanos.com/",
     about: "Brazilian churrascaria by University Mall. Grilled meats come to your table on skewers, with a salad and side bar.",
     known: ["Churrasco (unlimited grilled meats)", "Grilled pineapple", "Salad and side bar"],
@@ -166,7 +166,7 @@ window.DETAILS = {
       hours: [["Mon–Sat", "11 am–9 pm"], ["Sun", "Closed"]] }]
   },
   "purple-turtle": {
-    photo: "https://purpleturtlediner.com/wp-content/uploads/2025/07/purple-turtle-entrance960X540.avif",
+    photo: "https://purpleturtlediner.com/wp-content/uploads/2025/06/hamburger-onion_rings-scaled.webp",
     website: "https://purpleturtlediner.com/",
     about: "Old-school Pleasant Grove drive-in, famous for its fries and thick shakes.",
     known: ["Fries", "Pastrami burger", "Onion rings", "Peach cobbler shake"],
@@ -260,7 +260,7 @@ window.DETAILS = {
     locations: [{ name: "Original (North Temple)", address: "736 W North Temple, Salt Lake City, UT 84116", phone: "(801) 322-1489" }]
   },
   "lone-star-taqueria": {
-    photo: "https://lstaq.com/photos/patio.jpg",
+    photo: "images/lone-star-taqueria.jpg", photoCredit: "Lone Star Taqueria",
     website: "https://www.lstaq.com/",
     about: "Casual taco stand in Cottonwood Heights known for fish tacos. It has a drive-thru and outdoor seating.",
     known: ["Fish tacos", "Carne asada tacos", "Fish burrito", "Tamales"],
@@ -279,7 +279,7 @@ window.DETAILS = {
       hours: [["Mon–Thu", "11 am–9 pm"], ["Fri–Sat", "11 am–10 pm"], ["Sun", "Closed"]] }]
   },
   "fat-daddys": {
-    photo: "https://static.spotapps.co/new_website_videos/114786_videos/114786_video_desktop_v1.jpg",
+    photo: "images/fat-daddys.jpg", photoCredit: "Fat Daddy's Pizzeria",
     website: "https://fatdaddyspizzeria.com/",
     about: "Downtown Provo pizzeria on Center Street with big pies, wings and a dining room.",
     known: ["Pepperoni pizza", "Tri Carne pizza", "BBQ chicken pizza", "Margherita"],
@@ -312,7 +312,7 @@ window.DETAILS = {
       hours: [["Mon–Thu, Sun", "11 am–10 pm"], ["Fri–Sat", "11 am–11 pm"]] }]
   },
   "old-spaghetti-factory": {
-    photo: "https://www.osf.com/wp-content/uploads/2018/10/Salt-Lake-City.jpg",
+    photo: "images/old-spaghetti-factory.jpg", photoCredit: "The Old Spaghetti Factory",
     website: "https://www.osf.com/location/salt-lake-city-ut/",
     about: "Classic spaghetti house in Trolley Square. Every entrée comes with sourdough bread, soup or salad, and ice cream.",
     known: ["Spaghetti and meatballs", "Chicken piccata", "Sourdough bread", "Spumoni ice cream"],
