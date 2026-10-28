@@ -110,6 +110,7 @@ button, input { font: inherit; }
 /* ---------- Home: intro, then one card per category ---------- */
 .intro { padding: 36px 0 40px; border-bottom: 1px solid var(--rule); margin-bottom: 36px; }
 .intro h1 { font-size: 52px; }
+.intro-all { margin: 22px 0 0; }   /* [F13] Browse all button */
 .home-section + .home-section { margin-top: 48px; }
 .home-section h2 { font: 400 28px/1.2 var(--serif); }
 .view-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--gutter); }

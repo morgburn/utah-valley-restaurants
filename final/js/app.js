@@ -152,6 +152,8 @@
         "<h1>Where should we eat?</h1>" +
         '<p class="lede">Browse ' + S.restaurants.length + " restaurants from Provo to Salt Lake by the food you want or by how you want to eat. " +
           "Or search for anything: a dish, a price, a city, a night out.</p>" +
+        // [F13] one way in for people with nothing in mind yet
+        '<p class="intro-all"><a class="action action-primary" href="category.html?all=1" data-log-label="Browse all restaurants">Browse all ' + S.restaurants.length + " restaurants &rarr;</a></p>" +
       "</section>" +
       S.homeSections.map(function (sec) {
         var b = scheme(sec.by);
@@ -166,6 +168,17 @@
   // ---------- Category (both views) ----------
   function category() {
     var p = params();
+    if (p.get("all") === "1") {                      // [F13] every restaurant, nothing checked
+      document.title = "All Restaurants | " + S.title;
+      return page({},
+        '<div id="crumbs">' + crumbs([{ label: "Home", href: "index.html" }, { label: "All Restaurants" }]) + "</div>" +
+        '<div class="page-head"><p class="view-name" id="view-name">Browse</p><h1 id="page-h1">All Restaurants</h1></div>' +
+        '<div class="with-rail">' +
+          '<aside class="rail" aria-label="Narrow these restaurants" id="rail"></aside>' +
+          '<section aria-live="polite"><p class="count" id="count"></p><ul class="blocks" id="list"></ul></section>' +
+        "</div>" +
+        '<script type="application/json" id="cat-data">' + JSON.stringify({ by: "category", cat: "", all: true }) + "</script>");
+    }
     var b = scheme(p.get("by") || browseSchemes()[0].id);
     if (!b || b.role !== "browse") return notFound();
     var v = value(b.id, p.get("id"));
@@ -255,7 +268,7 @@
     var p = params();
     var chosen = {};
     RAIL_GROUPS.forEach(function (sid) {
-      chosen[sid] = p.has(sid) ? (p.get(sid) || "").split(",").filter(Boolean) : (sid === d.by ? [d.cat] : []);
+      chosen[sid] = p.has(sid) ? (p.get(sid) || "").split(",").filter(Boolean) : (sid === d.by && d.cat ? [d.cat] : []);
     });
 
     function heading() {
@@ -285,7 +298,7 @@
     function draw() {
       var shown = applyChosen(pool, chosen);
       var h = heading();
-      var u = new URLSearchParams({ by: d.by, id: d.cat });
+      var u = new URLSearchParams(d.all ? { all: "1" } : { by: d.by, id: d.cat });
       RAIL_GROUPS.forEach(function (sid) { u.set(sid, chosen[sid].join(",")); });
       // cards carry this list's address so the restaurant page breadcrumb leads back to it
       var back = "&list=" + encodeURIComponent(u.toString()) + "&listLabel=" + encodeURIComponent(h.title);
